@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+    
+    <main id="content">
+        <section id="intro">
+          <p>Before we move on, let’s pause for a moment.</p>
+          <p>Just a few true or false questions to reflect on what we’ve seen.</p>
+          <button onclick="startQuiz()">Start Quiz</button>
+        </section>
+    
+        <section id="quiz" style="display: none;"></section>
+      </main>
+
+       
+     
+
+
+{% endblock %}
