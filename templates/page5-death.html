@@ -6,8 +6,8 @@
     <title>Death | Echoes of Sappho</title>
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: white;
+            color: #333;
             font-family: sans-serif;
             margin: 0;
             padding: 0;
@@ -16,7 +16,8 @@
         header {
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #f8f8f8;
         }
         
         main {
@@ -27,13 +28,13 @@
         
         h1, h2, h3, h4 {
             font-weight: 300;
+            color: #222;
         }
         
         .italic {
             font-style: italic;
         }
         
-      
         .poetry-content {
             display: flex;
             gap: 2rem;
@@ -45,10 +46,10 @@
         
         .analysis-panel {
             flex: 0 0 40%;
-            background-color: rgba(15, 15, 26, 0.8);
+            background-color: rgba(245, 245, 250, 0.9);
             padding: 1.5rem;
             border-radius: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 7rem;
             max-height: calc(100vh - 12rem);
@@ -110,7 +111,7 @@
             display: inline-block;
             padding: 3px 8px;
             background-color: rgb(157, 78, 221);
-            color: #0f0f1a;
+            color: white;
             font-size: 0.7rem;
             font-weight: 500;
             border-radius: 3px;
@@ -118,7 +119,9 @@
             margin-bottom: 0.5rem;
         }
         
-         
+        #stars-container {
+            display: none;
+        }
         
         .navigation {
             margin-top: 40px;
@@ -127,23 +130,24 @@
         }
         
         a {
-            color: white;
+            color: #604080;
             text-decoration: none;
             padding: 8px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 20px;
         }
         
         a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(157, 78, 221, 0.1);
         }
         
         footer {
             text-align: center;
             padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
             font-size: 0.9rem;
             opacity: 0.6;
+            background-color: #f8f8f8;
         }
         
         @media (max-width: 768px) {
