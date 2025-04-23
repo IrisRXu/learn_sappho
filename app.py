@@ -5,6 +5,12 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# load data from JSON file
+with open('static/data/quiz_data.json') as f:
+    quiz_data = json.load(f)
+with open('static/data/quotes_data.json') as f:
+    quotes_data = json.load(f)
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -28,9 +34,19 @@ def quiz():
 def fragments():
     return render_template('fragments.html')
 
-@app.route('/create')
+@app.route('/create', methods=['GET'])
 def create():
-    return render_template('create.html')
+    query = request.args.get('query', '').strip()
+    if query:
+        results = [
+            item for item in quotes_data
+            if query.lower() in item['quote'].lower() 
+            or any(query.lower() in theme.lower() for theme in item['theme'])
+        ]
+    else:
+        results = quotes_data[:3]  # Default to top 3 quotes if no query is provided
+
+    return render_template('create.html', results=results)
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)

@@ -3,12 +3,25 @@
 {% block content %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'create.js') }}"></script>
 
-    
-    <form action="/search" method="get">
-        <input type="search" name="query" placeholder="Search keywords..." aria-label="Search">
+    <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);"></form>
+        <input type="search" id="search-query" name="query" placeholder="Search keywords..." aria-label="Search">
         <button type="submit">Search</button>
     </form>
-       
+
+    <button onclick="submitSearch('Nature')">Nature</button>
+    <button onclick="submitSearch('Sensuality')">Sensuality</button>
+    <button onclick="submitSearch('Love')">Love</button>
+    <button onclick="submitSearch('Life')">Life</button>
+    <button onclick="submitSearch('Divinity')">Divinity</button>
+
+    <div id="results">
+        <ul id="quotes-list">
+            {% for quote in results %}
+                <li>{{ quote.quote }} (Themes: {{ quote.theme | join(', ') }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <div id="intro">
         <h1>Your turn to compose with Sappho’s fragments</h1>
         <p>Sappho’s words have come to us like sea-glass—shaped by time, worn but glowing. Now, it’s your turn to gather them into your feelings and your voice. </p>
@@ -18,9 +31,6 @@
         <p><b>There’s no right way.</b> Your poem can be a whisper or a storm. A single line, or a cascade.</p>
         <!-- <p>When you’re ready, click “Compose” to see your poem.</p> -->
         <button id="canvas-button" onclick="compose()">Open Canvas</button>
-
     </div>
-     
-
 
 {% endblock %}
