@@ -3,6 +3,9 @@
 {% block content %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'create.js') }}"></script>
 
+    <button id="button" onclick="window.location.href='/fragments'">Review instructions</button>
+    <br>
+
     <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);">
         <input type="search" id="search-query" name="query" placeholder="Search keywords..." aria-label="Search">
         <button type="submit">Search</button>
@@ -24,40 +27,10 @@
         </ul>
     </div>
 
-    <div id="intro">
-        <h1>Your turn to compose with Sappho’s fragments</h1>
-        <p>Sappho’s words have come to us like sea-glass—shaped by time, worn but glowing. Now, it’s your turn to gather them into your feelings and your voice. </p>
-        <p><b>Choose</b> Sappho's quotes from the right.</p>
-        <p><b>Drag</b> them onto the canvas to begin building your own poem. Arrange them, repeat them, leave gaps. Let silence be part of your voice.</p>
-        <!-- <p>Add your own words if you like. You are not just assembling—you’re responding. You’re writing with Sappho.</p> -->
-        <p><b>There’s no right way.</b> Your poem can be a whisper or a storm. A single line, or a cascade.</p>
-        <!-- <p>When you’re ready, click “Compose” to see your poem.</p> -->
-        <button id="canvas-button" onclick="compose()">Open Canvas</button>
-    </div>
-
     <div id="canvas" style="display: none; border: 2px dashed #ccc; padding: 20px; min-height: 200px;">
         <h2>Drag and Drop Your Elements Here</h2>
     </div>
 
-    <!-- <script>
-        function compose() {
-            document.getElementById('intro').style.display = 'none';
-            const canvas = document.getElementById('canvas');
-            canvas.style.display = 'block';
+    <div id="submit"><button onclick="submitPoem()">Save and Share (not working)</button></div>
 
-            // Make the canvas droppable
-            $(canvas).droppable({
-                drop: function(event, ui) {
-                    const droppedElement = ui.helper.clone();
-                    $(this).append(droppedElement);
-                }
-            });
-
-            // Make quotes draggable
-            $('.draggable').draggable({
-                helper: 'clone',
-                revert: 'invalid'
-            });
-        }
-    </script> -->
 {% endblock %}

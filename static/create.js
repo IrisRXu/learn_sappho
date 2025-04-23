@@ -13,8 +13,7 @@ function submitSearch(query) {
     form.submit();
 }
 
-function compose() {
-    document.getElementById('intro').style.display = 'none';
+$(function(){
     const canvas = document.getElementById('canvas');
     canvas.style.display = 'block';
 
@@ -31,4 +30,4 @@ function compose() {
         helper: 'clone',
         revert: 'invalid'
     });
-}
+})

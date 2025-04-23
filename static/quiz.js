@@ -51,7 +51,7 @@ function answer(userAnswer) {
       <p>You’re carrying her voice with you—now let’s see what happens when we create something new from her fragments…</p>
 
       <button onclick="startQuiz()">Restart Quiz</button>
-      <button onclick="window.location.href='/templates/fragments.html'">Continue</button>
+      <button onclick="window.location.href='fragments'">Continue</button>
     `;
   }
 
