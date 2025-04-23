@@ -13,6 +13,13 @@ def home():
 def learn():
     return render_template('learn.html')
 
+# @app.route('/quiz/<quiz_id>')
+# def quiz(quiz_id):
+#     with open('static/data/quiz_data.json') as f:
+#         quiz_data = json.load(f)
+#     question = quiz_data[quiz_id]
+#     return render_template('quiz.html', question=question)
+
 @app.route('/quiz')
 def quiz():
     return render_template('quiz.html')
