@@ -3,7 +3,7 @@
 {% block content %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'create.js') }}"></script>
 
-    <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);"></form>
+    <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);">
         <input type="search" id="search-query" name="query" placeholder="Search keywords..." aria-label="Search">
         <button type="submit">Search</button>
     </form>
@@ -17,7 +17,9 @@
     <div id="results">
         <ul id="quotes-list">
             {% for quote in results %}
-                <li>{{ quote.quote }} (Themes: {{ quote.theme | join(', ') }})</li>
+                <li class="draggable" data-quote="{{ quote.quote }}">
+                    {{ quote.quote }} (Themes: {{ quote.theme | join(', ') }})
+                </li>
             {% endfor %}
         </ul>
     </div>
@@ -33,4 +35,29 @@
         <button id="canvas-button" onclick="compose()">Open Canvas</button>
     </div>
 
+    <div id="canvas" style="display: none; border: 2px dashed #ccc; padding: 20px; min-height: 200px;">
+        <h2>Drag and Drop Your Elements Here</h2>
+    </div>
+
+    <!-- <script>
+        function compose() {
+            document.getElementById('intro').style.display = 'none';
+            const canvas = document.getElementById('canvas');
+            canvas.style.display = 'block';
+
+            // Make the canvas droppable
+            $(canvas).droppable({
+                drop: function(event, ui) {
+                    const droppedElement = ui.helper.clone();
+                    $(this).append(droppedElement);
+                }
+            });
+
+            // Make quotes draggable
+            $('.draggable').draggable({
+                helper: 'clone',
+                revert: 'invalid'
+            });
+        }
+    </script> -->
 {% endblock %}

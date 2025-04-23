@@ -12,3 +12,23 @@ function submitSearch(query) {
     document.body.appendChild(form);
     form.submit();
 }
+
+function compose() {
+    document.getElementById('intro').style.display = 'none';
+    const canvas = document.getElementById('canvas');
+    canvas.style.display = 'block';
+
+    // Make the canvas droppable
+    $(canvas).droppable({
+        drop: function(event, ui) {
+            const droppedElement = ui.helper.clone();
+            $(this).append(droppedElement);
+        }
+    });
+
+    // Make quotes draggable
+    $('.draggable').draggable({
+        helper: 'clone',
+        revert: 'invalid'
+    });
+}
