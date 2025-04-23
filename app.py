@@ -24,9 +24,9 @@ def learn():
 def quiz():
     return render_template('quiz.html')
 
-@app.route('/results')
-def results():
-    return render_template('results.html')
+@app.route('/fragments')
+def fragments():
+    return render_template('fragments.html')
 
 if __name__ == '__main__':
     app.run(debug=True) 

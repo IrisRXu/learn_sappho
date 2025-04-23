@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+
+    
+    <section id="intro">
+        <p>Sadly, most of Sappho’s poems were lost. We now have only fragments of her poems quoted in other texts or found on bits of papyrus. 
+        </p>
+    </section>
+
+    <section id="transition">
+        <p>However, these fragments give Sappho’s poetry a new life.</p>
+        
+        <button onclick="window.location.href='/create.html'">Create with Sappho's Fragments</button>
+    </section>
+
+{% endblock %}
