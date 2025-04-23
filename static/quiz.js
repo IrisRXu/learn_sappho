@@ -23,11 +23,20 @@ function showQuestion() {
     <p>${q.question}</p>
     <button onclick="answer(true)">True</button>
     <button onclick="answer(false)">False</button>
-    <div>💫 ${'💫 '.repeat(currentQuestion)}</div>
+    <div id="progress">${generateProgress()}</div>
   `;
 }
 
+function generateProgress() {
+  return quizData
+    .slice(0, currentQuestion)
+    .map((q, index) => (q.userAnswer === q.answer ? '💫' : '❌'))
+    .join(' ');
+}
+
 function answer(userAnswer) {
+  quizData[currentQuestion].userAnswer = userAnswer; // Track user's answer
+  const progress = document.getElementById('progress');
   if (userAnswer === quizData[currentQuestion].answer) {
     score++;
   }
@@ -38,6 +47,11 @@ function answer(userAnswer) {
   } else {
     document.getElementById('quiz').innerHTML = `
       <p>Quiz complete! You scored ${score} out of ${quizData.length}.</p>
+      <p>Thanks for taking a moment with Sappho.</p>
+      <p>You’re carrying her voice with you—now let’s see what happens when we create something new from her fragments…</p>
+
+      <button onclick="startQuiz()">Restart Quiz</button>
+      <button onclick="window.location.href='/static/fragments.html'">Continue</button>
     `;
   }
 }
