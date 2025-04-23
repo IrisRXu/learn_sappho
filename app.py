@@ -28,5 +28,9 @@ def quiz():
 def fragments():
     return render_template('fragments.html')
 
+@app.route('/create')
+def create():
+    return render_template('create.html')
+
 if __name__ == '__main__':
     app.run(debug=True) 
