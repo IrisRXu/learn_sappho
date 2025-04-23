@@ -27,6 +27,30 @@ def page2():
 def page3():
     return render_template('page3.html')
 
+@app.route('/page4')
+def page4():
+    return render_template('page4.html')
+
+@app.route('/page4-sensuality')
+def page4_sensuality():
+    return render_template('page4-sensuality.html')
+
+@app.route('/page4-death')
+def page4_death():
+    return render_template('page4-death.html')
+
+@app.route('/page5-death')
+def page5_death():
+    return render_template('page5-death.html')
+
+@app.route('/page5-sensuality')
+def page5_sensuality():
+    return render_template('page5-sensuality.html')
+
+@app.route('/page6')
+def page6():
+    return render_template('page6.html')
+
 @app.route('/learn')
 def learn():
     return render_template('learn.html')
