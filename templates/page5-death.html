@@ -4,8 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Death | Echoes of Sappho</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 300;
+        }
+        
+        .italic {
+            font-style: italic;
+        }
+        
+      
+        .poetry-content {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .poem-container {
+            flex: 0 0 60%;
+        }
+        
+        .analysis-panel {
+            flex: 0 0 40%;
+            background-color: rgba(15, 15, 26, 0.8);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 7rem;
+            max-height: calc(100vh - 12rem);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+        
+        .poem-line {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .poem-line:hover {
+            background-color: rgba(157, 78, 221, 0.1);
+        }
+        
+        .poem-line.active {
+            background-color: rgba(157, 78, 221, 0.2);
+        }
+        
+        .poem-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background-color: rgba(157, 78, 221, 0.5);
+            border-radius: 0.25rem 0 0 0.25rem;
+            transition: width 0.3s ease;
+        }
+        
+        .poem-line:hover::before {
+            width: 3px;
+        }
+        
+        .poem-line.active::before {
+            width: 5px;
+        }
+        
+        .analysis-content {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            display: none;
+        }
+        
+        .analysis-content.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+        
+        .device-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: rgb(157, 78, 221);
+            color: #0f0f1a;
+            font-size: 0.7rem;
+            font-weight: 500;
+            border-radius: 3px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+         
+        
+        .navigation {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+        }
+        
+        a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .poetry-content {
+                flex-direction: column;
+            }
+            
+            .analysis-panel {
+                position: relative;
+                top: 0;
+                max-height: none;
+                margin-top: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="stars-container"></div>
+    
     <header>
         <h1>ECHOES OF SAPPHO</h1>
     </header>
@@ -13,33 +170,80 @@
     <main>
         <section>
             <h1>Fragment 95 - Contemplation</h1>
-            <div class="poem">
-                <p class="italic">
-                    "Death is an evil; the gods have so judged;<br>
-                    had it been good, they would die."
-                </p>
-            </div>
-            <div class="analysis">
-                <h2>Analysis</h2>
-                <p>
-                    In this brief fragment, Sappho offers a profound reflection on mortality. 
-                    By noting that the gods themselves avoid death, she highlights death's status 
-                    as an undesirable fate. This perspective underscores the common Greek view 
-                    of the afterlife as a shadowy, diminished existence.
-                </p>
-                <p>
-                    The fragment also suggests Sappho's skepticism toward conventional religious thinking. 
-                    While acknowledging the gods' immortality, she subtly questions why, if death were truly 
-                    a path to something better, the gods would keep immortality for themselves.
-                </p>
+            
+            <div class="poetry-content">
+                <div class="poem-container">
+                    <div class="poem">
+                        <div class="poem-header">
+                            <p>An exploration of mortality and the afterlife through the lens of divine privilege, questioning why the gods keep immortality for themselves.</p>
+                        </div>
+                        
+                        <div class="poem-body">
+                            <div id="line1" class="poem-line italic">
+                                Death is an evil; the gods have so judged;
+                            </div>
+                            
+                            <div id="line2" class="poem-line italic">
+                                had it been good, they would die.
+                            </div>
+                        </div>
+                        
+                        <div class="poem-footer">
+                            <p>Translation adapted from various scholars</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-panel">
+                    <h3>Literary Analysis</h3>
+                    <p>Click on any line of the poem for a detailed analysis of the rhetorical devices and techniques used by Sappho.</p>
+                    
+                    <div id="analysis1" class="analysis-content">
+                        <span class="device-tag">Aphorism</span>
+                        <span class="device-tag">Divine Reference</span>
+                        <h4>Death is an evil; the gods have so judged;</h4>
+                        <p>
+                            This line employs aphoristic statement—a concise, memorable assertion that presents a truth about existence. The declaration "Death is an evil" is presented as objective fact rather than personal opinion.
+                        </p>
+                        <p>
+                            By attributing this judgment to the gods, Sappho employs divine authority to strengthen her claim, while simultaneously setting up the subversive logic of the second line.
+                        </p>
+                        <p>
+                            The use of semicolon creates a pause that emphasizes the weight of this declaration before transitioning to the evidence that follows.
+                        </p>
+                    </div>
+                    
+                    <div id="analysis2" class="analysis-content">
+                        <span class="device-tag">Logical Inversion</span>
+                        <span class="device-tag">Counterfactual</span>
+                        <h4>had it been good, they would die.</h4>
+                        <p>
+                            This line employs counterfactual reasoning, presenting a hypothetical scenario that reveals the inconsistency in divine behavior. The logical structure "if X were true, then Y would occur" creates a powerful syllogism.
+                        </p>
+                        <p>
+                            The brevity of the line enhances its impact, delivering a subtle but profound critique of divine privilege through understatement rather than direct accusation.
+                        </p>
+                        <p>
+                            The implied conclusion—that gods selfishly keep immortality for themselves—reveals Sappho's skeptical approach to religious orthodoxy, suggesting mortals are unfairly subjected to death.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
+        
+        <div class="navigation">
+            <a href="/page4-death">Back</a>
+            <a href="/">Home</a>
+            <a href="/page6">Continue to Legacy →</a>
+        </div>
     </main>
 
-    <div>
-        <a href="/page4-death">Back</a>
-        <a href="/">Home</a>
-        <a href="/page6">Continue to Legacy →</a>
-    </div>
+    <footer>
+        <p>
+            Exploring the relationship between sensuality and death in Sappho's poetry
+        </p>
+    </footer>
+
+    <script src="/static/poetry-analysis.js"></script>
 </body>
 </html> 
