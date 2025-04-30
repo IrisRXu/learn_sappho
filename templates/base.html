@@ -1,32 +1,43 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+ 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="icon" href="data:,">
 
-    <!-- jquery -->
+ 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>  
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
+ 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
-    <title>Placeholder title</title>
+    <title>{% block title %}Fragments of Sappho{% endblock %}</title>
 
     </head>
 
     <body>
-        <div class="container-fluid p-0">   
-            {% block content %}
-            {% endblock %}
+        <div class="main-container">
+            <img src="{{url_for('static', filename='images/image1.png')}}" alt="Left statue" class="statue-left">
+            <img src="{{url_for('static', filename='images/image2.png')}}" alt="Right statue" class="statue-right">
+            <div class="content-wrapper">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
+
+ 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        {% block scripts %}{% endblock %}
     </body>
 
 </html>

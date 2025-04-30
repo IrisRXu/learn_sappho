@@ -1,34 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sappho</title>
-</head>
-<body>
-    <header>
-        <h1>ECHOES OF SAPPHO</h1>
-    </header>
+{% extends "base.html" %}
 
-    <main>
-        <section>
-            <h1>Welcome to Sappho's World</h1>
-            <p>
-                Explore the life and poetry of Sappho, an ancient Greek poet from 600 BCE.
-            </p>
-            <div>
-                <a href="/page1">Begin Journey</a>
-            </div>
-        </section>
-    </main>
-
-    <div>
-        <p>Select a section:</p>
-        <ul>
-            <li><a href="/page1">Meet Sappho</a></li>
-            <li><a href="/page2">Sappho's Identity</a></li>
-            <li><a href="/page3">Sappho's Poetry</a></li>
-        </ul>
-    </div>
-</body>
-</html> 
+{% block content %}
+<h1 class="main-title">Fragments of Sappho</h1>
+<p class="subtitle">Journey through the poetic fragments of Sappho, whose words on love and desire have echoed across 2,600 years.</p>
+<div class="button-group">
+    <a href="{{ url_for('learn') }}" class="main-button primary">Explore</a>
+    <a href="{{ url_for('quiz') }}" class="main-button secondary">Test Yourself</a>
+    <a href="{{ url_for('create') }}" class="main-button secondary">Create Your Own</a>
+</div>
+{% endblock %} 
