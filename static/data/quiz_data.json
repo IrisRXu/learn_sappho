@@ -1,42 +1,49 @@
 [
   {
     "id": 1,
-    "A": "Sappho’s poetry was originally meant to be read silently, like modern poems.",
-    "B": "Sappho’s poems were like lyrics to songs, accompanied by a lyre, a harp-like instrument.",
-    "photo1": "1A.png",
-    "photo2": "1B.png",
-    "answer": "B"
+    "descriptionA": "Sappho’s poetry was originally meant to be read silently, like modern poems.",
+    "descriptionB": "Sappho’s poems were like lyrics to songs, accompanied by a lyre, a harp-like instrument.",
+    "photoA": "/static/images/1A.png",
+    "photoB": "/static/images/1B.png",
+    "answer": "B",
+    "feedback": "Unlike modern poems, silent reading was not the norm in Sappho’s time. Her poetry was composed to be performed aloud and often set to music using a lyre. These were lyrical compositions meant for group recitation or musical accompaniment, not private reading."
   },
   {
     "id": 2,
-    "A": "Sappho's poems were like Homer's: long epics about gods and heroes.",
-    "B": "Sappho was one of the first poets to write about abstract feelings and personal emotions.",
-    "photo1": "2A.png",
-    "photo2": "2B.png",
-    "answer": "B"
+    "descriptionA": "Sappho's poems were like Homer's: long epics about gods and heroes.",
+    "descriptionB": "Sappho was one of the first poets to write about abstract feelings and personal emotions.",
+    "photoA": "/static/images/2A.png",
+    "photoB": "/static/images/2B.png",
+    "answer": "B",
+    "feedback": "While Homer composed long epic poems about battles and gods, Sappho's poetry was intimate and emotional. She focused on personal experiences, love, and longing—offering a radically different, more subjective voice in ancient Greek literature."
+
   },
   {
     "id": 3,
-    "A": "Most of Sapp3ho’s poetry has survived intact thanks to careful preservation.",
-    "B": "Sappho’s poetry survives mostly in fragments because her works were lost or destroyed over time.",
-    "photo1": "3A.png",
-    "photo2": "3B.png",
-    "answer": "B"
+    "descriptionA": "Most of Sapp3ho’s poetry has survived intact thanks to careful preservation.",
+    "descriptionB": "Sappho’s poetry survives mostly in fragments because her works were lost or destroyed over time.",
+    "photoA": "/static/images/3A.png",
+    "photoB": "/static/images/3B.png",
+    "answer": "B",
+    "feedback": "Sappho's poetry has survived in fragments, with only one complete poem. The fragments come to us in papyrus scraps, quoted in ancient texts, or reconstructed from damaged materials. The surviving fragments give us glimpses into her style and themes, but much remains unknown."
   },
   {
     "id": 4,
-    "A": "Sappho’s poetry was largely forgotten and had little impact on later literature.",
-    "B": "Her poetry influenced Roman and later European lyric poets.",
-    "photo1": "4A.png",
-    "photo2": "4B.png",
-    "answer": "B"
+    "descriptionA": "Sappho’s poetry was largely forgotten and had little impact on later literature.",
+    "descriptionB": "Her poetry influenced Roman and later European lyric poets.",
+    "photoA": "/static/images/4A.png",
+    "photoB": "/static/images/4B.png",
+    "answer": "B",
+    "feedback": "Sappho deeply influenced poets like Catullus and Horace in Rome and later lyric traditions in Europe. Her's work was rediscovered during the Renaissance, influencing poets like Petrarch and Shakespeare. Her themes of love and longing resonated through the ages, inspiring countless writers and artists. Her legacy is evident in the continued exploration of personal emotion in poetry."
   },
   {
     "id": 5,
-    "A": "Sappho was openly recognized as a queer icon during her own lifetime.",
-    "B": "The idea of Sappho as a queer icon emerged long after her death.",
-    "photo1": "5A.png",
-    "photo2": "5B.png",
-    "answer": "B"
+    "descriptionA": "Sappho was openly recognized as a queer person during her own lifetime.",
+    "descriptionB": "The idea of Sappho as a queer icon emerged long after her death.",
+    "photoA": "/static/images/5A.png",
+    "photoB": "/static/images/5B.png",
+    "answer": "B",
+    "feedback": "In her own time, Sappho was admired for her poetic skill. The interpretation of Sappho as a queer icon emerged in the 19th century, when scholars and artists began to explore her poetry's themes of love between women in the context of same-sex desire. While her poems express deep affection for women, ancient audiences may not have understood or labeled this in the way modern queer identity is defined today."
+
   }
 ]

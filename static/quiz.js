@@ -1,6 +1,7 @@
 let quizData = [];
 let currentQuestion = 0;
 let score = 0;
+selectedCard = null;
 
 function startQuiz() {
   fetch('/static/data/quiz_data.json')
@@ -20,27 +21,47 @@ function showQuestion() {
   const q = quizData[currentQuestion];
 
   quiz.innerHTML = `
-    <p>${q.question}</p>
-    <button onclick="answer(true)">True</button>
-    <button onclick="answer(false)">False</button>
-    <div id="progress">${generateProgress()}</div>
+    <div class="cards">
+      <div class="card" id="card1" data-answer="A" onclick="selectCard(this)">
+        <img src="${q.photoA}" alt="photo matching description">
+        <p>${q.descriptionA}</p>
+      </div>
+      <div class="card" id="card2" data-answer="B" onclick="selectCard(this)">
+        <img src="${q.photoB}" alt="photo matching description">
+        <p>${q.descriptionB}</p>
+      </div>
+    </div>
+    <button class="main-button primary" onclick="submitAnswer()">Confirm</button>
   `;
+
+  selectedCard = null;
 }
 
-function generateProgress() {
-  return quizData
-    .slice(0, currentQuestion)
-    .map((q, index) => (q.userAnswer === q.answer ? '💫' : '❌'))
-    .join(' ');
+function selectCard(card) {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedCard = card.dataset.answer;
 }
 
-function answer(userAnswer) {
-  quizData[currentQuestion].userAnswer = userAnswer; // Track user's answer
-  const progress = document.getElementById('progress');
-  if (userAnswer === quizData[currentQuestion].answer) {
+function submitAnswer() {
+  if (!selectedCard) {
+    alert("Please select an answer before confirming.");
+    return;
+  }
+
+  quizData[currentQuestion].userAnswer = selectedCard; // Track user's answer
+  if (selectedCard === quizData[currentQuestion].answer) {
     score++;
   }
 
+  // Show feedback based on the selected answer
+    document.getElementById('quiz').innerHTML = `
+    <p>${quizData[currentQuestion].feedback}</p>
+    <button class="main-button primary" onclick="nextQuestion()">Next</button>
+  `;
+}
+
+function nextQuestion() {
   currentQuestion++;
   if (currentQuestion < quizData.length) {
     showQuestion();
@@ -54,7 +75,4 @@ function answer(userAnswer) {
       <button onclick="window.location.href='fragments'">Continue</button>
     `;
   }
-
-  // window.location.href = '/templates/result.html?score=' + score + '&total=' + quizData.length;
-
 }

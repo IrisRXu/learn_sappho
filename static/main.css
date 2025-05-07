@@ -5,6 +5,10 @@
     --button-hover-bg: #D8E1E8;
     --button-text: #4A4A4A;
     --secondary-button-bg: #d3d3d3;
+    --card-bg: #EEEEEE;
+    --card-bg-selected: #D0DEE2; /* Correct the typo */
+    --card-border: #B7B7B7;
+    --card-border-selected: #A7C2C9;
 }
 
 body {
@@ -117,3 +121,22 @@ h1.main-title {
     text-decoration: none;
     color: var(--button-text);
 } 
+
+/* quiz page */
+.card {
+    cursor: pointer;
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    padding: 20px;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card.selected {
+    background-color: var(--card-bg-selected);
+    border: 2px solid var(--card-border-selected);
+}
