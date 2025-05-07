@@ -1,28 +1,42 @@
 [
-    {
-      "id": 1,
-      "question": "Sappho lived and wrote her poems over 2,500 years ago.",
-      "answer": true
-    },
-    {
-      "id": 2,
-      "question": "The word 'lesbian' comes from the name of Sappho’s home island, Lesbos.",
-      "answer": true
-    },
-    {
-      "id": 3,
-      "question": "Sappho’s poetry was originally meant to be read silently, like modern poems.",
-      "answer": false
-    },
-    {
-      "id": 4,
-      "question": "Sappho was one of the first poets to write about abstract feelings and emotions.",
-      "answer": true
-    },
-    {
-      "id": 5,
-      "question": "Sappho's voice feels surprisingly modern, even though her poems were written millennia ago.",
-      "answer": true
-    }
-  ]
-  
+  {
+    "id": 1,
+    "A": "Sappho’s poetry was originally meant to be read silently, like modern poems.",
+    "B": "Sappho’s poems were like lyrics to songs, accompanied by a lyre, a harp-like instrument.",
+    "photo1": "1A.png",
+    "photo2": "1B.png",
+    "answer": "B"
+  },
+  {
+    "id": 2,
+    "A": "Sappho's poems were like Homer's: long epics about gods and heroes.",
+    "B": "Sappho was one of the first poets to write about abstract feelings and personal emotions.",
+    "photo1": "2A.png",
+    "photo2": "2B.png",
+    "answer": "B"
+  },
+  {
+    "id": 3,
+    "A": "Most of Sapp3ho’s poetry has survived intact thanks to careful preservation.",
+    "B": "Sappho’s poetry survives mostly in fragments because her works were lost or destroyed over time.",
+    "photo1": "3A.png",
+    "photo2": "3B.png",
+    "answer": "B"
+  },
+  {
+    "id": 4,
+    "A": "Sappho’s poetry was largely forgotten and had little impact on later literature.",
+    "B": "Her poetry influenced Roman and later European lyric poets.",
+    "photo1": "4A.png",
+    "photo2": "4B.png",
+    "answer": "B"
+  },
+  {
+    "id": 5,
+    "A": "Sappho was openly recognized as a queer icon during her own lifetime.",
+    "B": "The idea of Sappho as a queer icon emerged long after her death.",
+    "photo1": "5A.png",
+    "photo2": "5B.png",
+    "answer": "B"
+  }
+]
