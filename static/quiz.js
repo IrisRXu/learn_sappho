@@ -21,17 +21,22 @@ function showQuestion() {
   const q = quizData[currentQuestion];
 
   quiz.innerHTML = `
-    <div class="cards">
-      <div class="card" id="card1" data-answer="A" onclick="selectCard(this)">
-        <img src="${q.photoA}" alt="photo matching description">
-        <p>${q.descriptionA}</p>
+    <div class="question-container">
+      <div class="question">
+        <h2>Which one is true?</h2>
       </div>
-      <div class="card" id="card2" data-answer="B" onclick="selectCard(this)">
-        <img src="${q.photoB}" alt="photo matching description">
-        <p>${q.descriptionB}</p>
+      <div class="cards">
+        <div class="card" id="card1" data-answer="A" onclick="selectCard(this)">
+          <img src="${q.photoA}" alt="photo matching description">
+          <p>${q.descriptionA}</p>
+        </div>
+        <div class="card" id="card2" data-answer="B" onclick="selectCard(this)">
+          <img src="${q.photoB}" alt="photo matching description">
+          <p>${q.descriptionB}</p>
+        </div>
       </div>
     </div>
-    <button class="main-button primary" onclick="submitAnswer()">Confirm</button>
+    <button class="main-button primary" id="confirm" onclick="submitAnswer()">Confirm</button>
   `;
 
   selectedCard = null;
@@ -50,13 +55,30 @@ function submitAnswer() {
   }
 
   quizData[currentQuestion].userAnswer = selectedCard; // Track user's answer
-  if (selectedCard === quizData[currentQuestion].answer) {
+  const isCorrect = selectedCard === quizData[currentQuestion].answer;
+  if (isCorrect) {
     score++;
   }
 
-  // Show feedback based on the selected answer
-    document.getElementById('quiz').innerHTML = `
-    <p>${quizData[currentQuestion].feedback}</p>
+  // Hide the unselected card and show feedback
+  document.querySelectorAll('.card').forEach(card => {
+    if (card.dataset.answer !== selectedCard) {
+      card.innerHTML = `
+        <p>${isCorrect ? "Correct!" : "Incorrect."}</p>
+        <p>${quizData[currentQuestion].feedback}</p>
+      `;
+    }
+  });
+
+  // Hide the "Confirm" button
+  const confirmButton = document.getElementById('confirm'); // Select the button by its id
+  if (confirmButton) {
+    confirmButton.style.display = 'none';
+  }
+
+  // Add a "Next" button below the feedback
+  const quiz = document.getElementById('quiz');
+  quiz.innerHTML += `
     <button class="main-button primary" onclick="nextQuestion()">Next</button>
   `;
 }

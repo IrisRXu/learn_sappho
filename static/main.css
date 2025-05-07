@@ -123,7 +123,38 @@ h1.main-title {
 } 
 
 /* quiz page */
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align the question and cards */
+    gap: 1.5rem; /* Space between question and cards */
+}
+
+.question {
+    flex-shrink: 0; /* Prevent the question from resizing */
+    max-width: none; /* Remove width restriction */
+    text-align: center; /* Center align the text */
+}
+
+.cards {
+    display: flex;
+    gap: 1rem; /* Space between cards */
+}
+
 .card {
+    width: 500px; /* Fixed width */
+    height: 700px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
     background-color: var(--card-bg);
     border: 2px solid var(--card-border);
@@ -139,4 +170,11 @@ h1.main-title {
 .card.selected {
     background-color: var(--card-bg-selected);
     border: 2px solid var(--card-border-selected);
+}
+
+.card img {
+    width: 100%; /* Make the image take up the full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the available space */
+    border-radius: 10px; /* Optional: Add rounded corners to match the card */
 }
