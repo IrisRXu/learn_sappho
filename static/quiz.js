@@ -93,8 +93,8 @@ function nextQuestion() {
       <p>Thanks for taking a moment with Sappho.</p>
       <p>You’re carrying her voice with you—now let’s see what happens when we create something new from her fragments…</p>
 
-      <button onclick="startQuiz()">Restart Quiz</button>
-      <button onclick="window.location.href='fragments'">Continue</button>
+      <button class="main-button secondary" onclick="startQuiz()">Restart Quiz</button>
+      <button class="main-button primary" onclick="window.location.href='fragments'">Continue</button>
     `;
   }
 }
