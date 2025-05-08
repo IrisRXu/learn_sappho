@@ -27,12 +27,20 @@ function showQuestion() {
       </div>
       <div class="cards">
         <div class="card" id="card1" data-answer="A" onclick="selectCard(this)">
-          <img src="${q.photoA}" alt="photo matching description">
-          <p>${q.descriptionA}</p>
+          <div class="image-container">
+            <img src="${q.photoA}" alt="photo matching description">
+          </div>
+          <div class="description">
+            <p>${q.descriptionA}</p>
+          </div>
         </div>
         <div class="card" id="card2" data-answer="B" onclick="selectCard(this)">
-          <img src="${q.photoB}" alt="photo matching description">
-          <p>${q.descriptionB}</p>
+          <div class="image-container">
+            <img src="${q.photoB}" alt="photo matching description">
+          </div>
+          <div class="description">
+            <p>${q.descriptionB}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -64,8 +72,10 @@ function submitAnswer() {
   document.querySelectorAll('.card').forEach(card => {
     if (card.dataset.answer !== selectedCard) {
       card.innerHTML = `
-        <p>${isCorrect ? "Correct!" : "Incorrect."}</p>
-        <p>${quizData[currentQuestion].feedback}</p>
+        <div class="description">
+          <h2>${isCorrect ? "Correct :-)" : "Incorrect :-("}</h2>
+          <p>${quizData[currentQuestion].feedback}</p>
+        </div>
       `;
     }
   });
@@ -89,12 +99,15 @@ function nextQuestion() {
     showQuestion();
   } else {
     document.getElementById('quiz').innerHTML = `
-      <p>Quiz complete! You scored ${score} out of ${quizData.length}.</p>
+      <h2>Congratulations!</h2>
+      <p>You scored ${score} out of ${quizData.length}.</p>
       <p>Thanks for taking a moment with Sappho.</p>
       <p>You’re carrying her voice with you—now let’s see what happens when we create something new from her fragments…</p>
 
-      <button class="main-button secondary" onclick="startQuiz()">Restart Quiz</button>
-      <button class="main-button primary" onclick="window.location.href='fragments'">Continue</button>
+      <div class="button-group">
+        <button class="main-button secondary" onclick="startQuiz()">Restart Quiz</button>
+        <button class="main-button primary" onclick="window.location.href='fragments'">Continue</button>
+      </div>
     `;
   }
 }
