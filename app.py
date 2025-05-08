@@ -1,15 +1,36 @@
 from flask import Flask, render_template, request, jsonify, session
 import json
 import os
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
+from rich import _console
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-# load data from JSON file
-with open('static/data/quiz_data.json') as f:
-    quiz_data = json.load(f)
-with open('static/data/quotes_data.json') as f:
-    quotes_data = json.load(f)
+# load data from JSON file with error handling
+try:
+    with open('static/data/quiz_data.json') as f:
+        quiz_data = json.load(f)
+except FileNotFoundError:
+    logging.error("quiz_data.json not found in static/data/")
+    quiz_data = []
+except json.JSONDecodeError:
+    logging.error("Error decoding quiz_data.json")
+    quiz_data = []
+
+try:
+    with open('static/data/quotes_data.json') as f:
+        quotes_data = json.load(f)
+except FileNotFoundError:
+    logging.error("quotes_data.json not found in static/data/")
+    quotes_data = []
+except json.JSONDecodeError:
+    logging.error("Error decoding quotes_data.json")
+    quotes_data = []
 
 @app.route('/')
 def home():
@@ -55,9 +76,41 @@ def page6():
 def learn():
     return render_template('learn.html')
 
-@app.route('/quiz')
-def quiz():
-    return render_template('quiz.html')
+@app.route('/quiz-intro')
+def quiz_intro():
+    return render_template('quiz-intro.html')
+
+@app.route('/quiz-progress', methods=['GET'])
+def get_quiz_progress():
+    progress = session.get('quiz_progress', {})
+    return jsonify(progress)
+
+@app.route('/quiz-progress', methods=['POST'])
+def save_quiz_progress():
+    session['quiz_progress'] = request.json
+    return jsonify({"status": "success"})
+
+@app.route('/quiz/<id>')
+def quiz(id=None):
+    global quiz_data
+
+    progress = session.get('quiz_progress', {})
+    question = quiz_data[int(id)] if id and id.isdigit() and int(id) < len(quiz_data) else None
+    
+    if question:
+        return render_template('quiz.html', question=question, progress=progress)
+    else:
+        return "Question not found", 404
+
+@app.route('/quiz-finish')
+def quiz_finish():
+    progress = session.get('quiz_progress', {})
+    total_questions = len(quiz_data)
+    print(f"Total questions: {total_questions}")
+    if not progress:
+        return "No quiz progress found", 404
+    return render_template('quiz-finish.html', progress=progress, {'totalQuestions': total_questions})
+
 
 @app.route('/fragments')
 def fragments():
@@ -78,4 +131,4 @@ def create():
     return render_template('create.html', results=results)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
