@@ -122,5 +122,9 @@ def save_learning_progress():
     session['learning_progress'] = request.json
     return jsonify({"status": "success"})
 
+@app.route('/page5-sensuality')
+def page5_sensuality():
+    return render_template('page5-sensuality.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
