@@ -1,0 +1,40 @@
+{
+    "pages": [
+        {
+            "id": "1",
+            "title": "Sappho's World",
+            "content": "Step into the ancient world of Lesbos, where Sappho's poetry flourished. Born around 630 BCE on the island of Lesbos, Sappho lived during a time when Greek culture was reaching new heights. Her poetry, written in the Aeolic dialect, captured the essence of love, desire, and the human experience in a way that continues to resonate today.",
+            "next_page": "2"
+        },
+        {
+            "id": "2",
+            "title": "The Poet's Life",
+            "content": "Discover the life and times of Sappho, one of the most influential poets of ancient Greece. As a teacher and leader of a thiasos (a group of young women), she composed songs for weddings and religious ceremonies. Her work, though largely lost to time, has survived in fragments that speak to universal themes of love, longing, and the beauty of the natural world.",
+            "next_page": "3"
+        },
+        {
+            "id": "3",
+            "title": "Her Legacy",
+            "content": "Explore how Sappho's work has influenced literature and culture throughout the ages. Known as the 'Tenth Muse' by Plato, her innovative use of the first-person voice and her exploration of female desire broke new ground in poetry. Her influence can be seen in the works of countless poets and writers who followed, from Catullus to modern poets.",
+            "next_page": "4"
+        },
+        {
+            "id": "4",
+            "title": "Themes in Sappho's Poetry",
+            "content": "Dive into the rich themes that permeate Sappho's work. Her poetry explores the complexities of love and desire, the beauty of nature, and the passage of time. Through her vivid imagery and emotional depth, she created a body of work that speaks to the human experience across millennia.",
+            "next_page": "5"
+        },
+        {
+            "id": "5",
+            "title": "The Power of Fragments",
+            "content": "Understand the significance of Sappho's surviving fragments. Though much of her work has been lost, the fragments that remain offer glimpses into her genius. These pieces, preserved through quotes in other works and discoveries of ancient papyri, continue to inspire and move readers today.",
+            "next_page": "6"
+        },
+        {
+            "id": "6",
+            "title": "Modern Interpretations",
+            "content": "Discover how contemporary scholars and artists continue to engage with Sappho's work. From new translations to musical adaptations, her poetry remains a vital source of inspiration. Her exploration of love, desire, and the human experience continues to resonate in our modern world.",
+            "next_page": "quiz-intro"
+        }
+    ]
+} 

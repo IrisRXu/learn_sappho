@@ -1,57 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Themes | Echoes of Sappho</title>
-</head>
-<body>
-    <header>
-        <h1>ECHOES OF SAPPHO</h1>
-    </header>
+{% extends "base.html" %}
 
-    <main>
-        <section>
-            <h1>Choose Your Path</h1>
-            <p>
-                Explore the intertwining themes of sensuality and death in Sappho's poetry.
-            </p>
-            <div>
-                <div id="sensuality-theme" data-theme="sensuality">
-                    <h2>Sensuality</h2>
-                    <p>Explore the vibrant expressions of desire and physical beauty.</p>
-                    <a href="/page4-sensuality">Begin Journey</a>
-                </div>
-                <div id="death-theme" data-theme="death">
-                    <h2>Death</h2>
-                    <p>Delve into the contemplations of mortality and loss.</p>
-                    <a href="/page4-death">Begin Journey</a>
-                </div>
-            </div>
-        </section>
-    </main>
+{% block content %}
+<div class="learning-container">
+    <section class="learning-section">
+        <h1 class="learning-title">{{ page.title }}</h1>
+        <p class="learning-content">
+            {{ page.content }}
+        </p>
+        <div class="navigation-buttons">
+            <a href="/page{{ page.next_page }}" class="main-button primary" onclick="saveProgress()">Continue</a>
+        </div>
+    </section>
+</div>
+{% endblock %}
 
-    <div>
-        <a href="/page3">Back</a>
-    </div>
-
-    <footer>
-        <p>Exploring the relationship between sensuality and death in Sappho's poetry</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sensualityCard = document.getElementById('sensuality-theme');
-            const deathCard = document.getElementById('death-theme');
-            
-            sensualityCard.addEventListener('click', function() {
-                window.location.href = '/page4-sensuality';
-            });
-            
-            deathCard.addEventListener('click', function() {
-                window.location.href = '/page4-death';
-            });
+{% block scripts %}
+<script>
+    function saveProgress() {
+        $.ajax({
+            url: '/learning-progress',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                currentPage: '{{ page.id }}',
+                completed: true
+            })
         });
-    </script>
-</body>
-</html> 
+    }
+
+    // Load progress when page loads
+    $(document).ready(function() {
+        $.get('/learning-progress', function(progress) {
+            if (progress.currentPage) {
+                console.log('Current progress:', progress);
+            }
+        });
+    });
+</script>
+{% endblock %} 
