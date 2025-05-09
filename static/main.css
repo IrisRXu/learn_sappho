@@ -147,6 +147,7 @@ h2 {
 }
 
 .description {
+    font-size: 1.1rem;
     padding: 2rem;
 }
 
@@ -370,4 +371,35 @@ h2 {
     font-size: 1rem;
     color: #666;
     font-style: italic;
+}
+
+/* nav bar */
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+.nav-item {
+text-decoration: none;
+font-size: 16px;
+color: #555;
+padding: 10px 20px;
+position: relative;
+cursor: pointer;
+}
+
+.nav-item.active {
+color: #3a9a8d; /* Highlight color for active section */
+font-weight: bold;
+}
+
+.nav-item:hover {
+text-decoration: underline;
+}
+
+.nav-item:active {
+color: #2f7c6e; /* Slightly darker color when clicked */
 }

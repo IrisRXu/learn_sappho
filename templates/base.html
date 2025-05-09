@@ -8,7 +8,17 @@
 
  
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>  
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script> 
+    
+    <script>
+        function navigateTo(section) {
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(item => item.classList.remove('active'));
+            
+            const activeItem = document.querySelector(`.nav-item[href="${section.replace(" ", "")}"]`);
+            activeItem.classList.add('active');
+        }
+    </script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +34,13 @@
     </head>
 
     <body>
+        <div class="navbar">
+            <a href="/" class="nav-item" onclick="navigateTo('/')">Home</a>
+            <a href="/page1" class="nav-item" onclick="navigateTo('/page1')">Explore</a>
+            <a href="/quiz-intro" class="nav-item" onclick="navigateTo('/quiz-intro')">Test Yourself</a>
+            <a href="/create" class="nav-item" onclick="navigateTo('/create')">Create Your Own</a>
+        </div>
+
         <div class="main-container">
             <img src="{{url_for('static', filename='images/image1.png')}}" alt="Left statue" class="statue-left">
             <img src="{{url_for('static', filename='images/image2.png')}}" alt="Right statue" class="statue-right">

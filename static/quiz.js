@@ -60,16 +60,29 @@ function submitAnswer() {
     document.querySelectorAll('.card').forEach(card => {
       if (card.dataset.answer !== selectedAnswer) {
         card.style.display = 'none';
+      } else if (card.dataset.answer === correctAnswer) {
+        card.style = 'background-color:rgb(192, 212, 195);';
+      } else {
+        card.style = 'background-color:rgb(212, 192, 192);';
       }
     });
     
-    const feedback = document.getElementById('feedback');
-    feedback.innerHTML = isCorrect ? 
-      `<h2 class="correct">Correct!</h2>` : 
-      `<h2 class="incorrect">Incorrect.</h2>`;
-    feedback.innerHTML += `
-      <p>${questionData.feedback}</p>
-    `;
+    const feedback = document.getElementById('feedback-container');
+    feedback.innerHTML = ''; // Clear any existing content
+
+    const feedbackDiv = document.createElement('div');
+    feedbackDiv.id = 'feedback';
+
+    const feedbackHeading = document.createElement('h2');
+    feedbackHeading.className = isCorrect ? 'correct' : 'incorrect';
+    feedbackHeading.textContent = isCorrect ? 'Correct :-)' : 'Incorrect :-(';
+
+    const feedbackParagraph = document.createElement('p');
+    feedbackParagraph.textContent = questionData.feedback;
+
+    feedbackDiv.appendChild(feedbackHeading);
+    feedbackDiv.appendChild(feedbackParagraph);
+    feedback.appendChild(feedbackDiv);
 
     // Hide the "Confirm" button
     const confirmButton = document.getElementById('confirm');
@@ -91,7 +104,13 @@ function nextQuestion() {
   console.log("current question id:", questionData.id);
   console.log("total length:", quizLength);
 
-  document.getElementById('feedback').style.display = 'none';
+  // const feedback = document.getElementById('feedback-container');
+  // feedback.style.display = 'none';
+
+  // // Ensure the cards maintain their layout by resetting their display property
+  // document.querySelectorAll('.card').forEach(card => {
+  //   card.style.display = 'block';
+  // });
   if (questionData.id < quizLength) {
     window.location.href=`/quiz/${questionData.id}`;
   } else {
