@@ -90,6 +90,8 @@ function submitAnswer() {
 function nextQuestion() {
   console.log("current question id:", questionData.id);
   console.log("total length:", quizLength);
+
+  document.getElementById('feedback').style.display = 'none';
   if (questionData.id < quizLength) {
     window.location.href=`/quiz/${questionData.id}`;
   } else {

@@ -109,7 +109,7 @@ def quiz_finish():
     print(f"Total questions: {total_questions}")
     if not progress:
         return "No quiz progress found", 404
-    return render_template('quiz-finish.html', progress=progress, {'totalQuestions': total_questions})
+    return render_template('quiz-finish.html', progress=progress, total_questions=total_questions)
 
 
 @app.route('/fragments')
