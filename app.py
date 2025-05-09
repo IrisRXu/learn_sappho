@@ -11,7 +11,7 @@ from rich import _console
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-# load data from JSON file with error handling
+# load data from JSON files with error handling
 try:
     with open('static/data/quiz_data.json') as f:
         quiz_data = json.load(f)
@@ -32,45 +32,28 @@ except json.JSONDecodeError:
     logging.error("Error decoding quotes_data.json")
     quotes_data = []
 
+try:
+    with open('static/data/learning_data.json') as f:
+        learning_data = json.load(f)
+except FileNotFoundError:
+    logging.error("learning_data.json not found in static/data/")
+    learning_data = {"pages": []}
+except json.JSONDecodeError:
+    logging.error("Error decoding learning_data.json")
+    learning_data = {"pages": []}
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/page1')
-def page1():
-    return render_template('page1.html')
-
-@app.route('/page2')
-def page2():
-    return render_template('page2.html')
-
-@app.route('/page3')
-def page3():
-    return render_template('page3.html')
-
-@app.route('/page4')
-def page4():
-    return render_template('page4.html')
-
-@app.route('/page4-sensuality')
-def page4_sensuality():
-    return render_template('page4-sensuality.html')
-
-@app.route('/page4-death')
-def page4_death():
-    return render_template('page4-death.html')
-
-@app.route('/page5-death')
-def page5_death():
-    return render_template('page5-death.html')
-
-@app.route('/page5-sensuality')
-def page5_sensuality():
-    return render_template('page5-sensuality.html')
-
-@app.route('/page6')
-def page6():
-    return render_template('page6.html')
+@app.route('/page<int:page_id>')
+def learning_page(page_id):
+    if 1 <= page_id <= 6:
+        page_data = next((page for page in learning_data['pages'] if page['id'] == str(page_id)), None)
+        if page_data:
+            progress = session.get('learning_progress', {})
+            return render_template(f'page{page_id}.html', page=page_data, progress=progress)
+    return "Page not found", 404
 
 @app.route('/learn')
 def learn():
@@ -109,8 +92,7 @@ def quiz_finish():
     print(f"Total questions: {total_questions}")
     if not progress:
         return "No quiz progress found", 404
-    return render_template('quiz-finish.html', progress=progress, total_questions=total_questions)
-
+    return render_template('quiz-finish.html', progress=progress, totalQuestions=total_questions)
 
 @app.route('/fragments')
 def fragments():
@@ -129,6 +111,20 @@ def create():
         results = quotes_data[:3]  # Default to top 3 quotes if no query is provided
 
     return render_template('create.html', results=results)
+
+@app.route('/learning-progress', methods=['GET'])
+def get_learning_progress():
+    progress = session.get('learning_progress', {})
+    return jsonify(progress)
+
+@app.route('/learning-progress', methods=['POST'])
+def save_learning_progress():
+    session['learning_progress'] = request.json
+    return jsonify({"status": "success"})
+
+@app.route('/page5-sensuality')
+def page5_sensuality():
+    return render_template('page5-sensuality.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

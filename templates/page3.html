@@ -1,28 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sappho</title>
-</head>
-<body>
-    <header>
-        <h1>ECHOES OF SAPPHO</h1>
-    </header>
+{% extends "base.html" %}
 
-    <main>
-        <section>
-            <div>
-                <h2>Sappho's Poetry</h2>
-                <p>Sappho's poems were like lyric to songs, accompanied by a harp-like instrument. Listen to the harp in the background music.</p>
-            </div>
-        </section>
-    </main>
+{% block content %}
+<div class="learning-container">
+    <section class="learning-section">
+        <h1 class="learning-title">{{ page.title }}</h1>
+        <p class="learning-content">
+            {{ page.content }}
+        </p>
+        
+        <div class="image-section">
+            <img src="/static/images/3A.png" alt="Sappho's Legacy" class="learning-image">
+        </div>
 
-    <div>
-        <a href="/page2">Back</a>
-        <a href="/">Home</a>
-        <a href="/page4">Continue</a>
-    </div>
-</body>
-</html> 
+        <div class="navigation-buttons">
+            <a href="/page{{ page.next_page }}" class="main-button primary" onclick="saveProgress()">Continue</a>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function saveProgress() {
+        $.ajax({
+            url: '/learning-progress',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                currentPage: '{{ page.id }}',
+                completed: true
+            })
+        });
+    }
+
+    // Load progress when page loads
+    $(document).ready(function() {
+        $.get('/learning-progress', function(progress) {
+            if (progress.currentPage) {
+                console.log('Current progress:', progress);
+            }
+        });
+    });
+</script>
+{% endblock %} 
