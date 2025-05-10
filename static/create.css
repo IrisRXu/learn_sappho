@@ -1,0 +1,58 @@
+:root {
+    --main-font: 'EB Garamond', serif;
+    --text-color: #333;
+    --light-grey: #B7B7B7;
+    --lighter-grey: #EEEEEE;
+
+    --lighter-blue: #D0DEE2;
+    --light-blue: #A7C2C9;
+    --blue: #8FB1B4;
+    --darker-blue: #6A8F92;
+    
+    --button-hover-bg: #D8E1E8;
+    --button-text: #4A4A4A;
+    --secondary-button-bg: #d3d3d3;
+}
+
+#back-button {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    padding: 10px 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+#search-query {
+    width: 100%;
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: var(--text-color);
+    border: 1px solid var(--light-grey);
+    background-color: var(--lighter-grey);
+}
+
+.button-small {
+    background-color: var(--blue);
+    border: 1px solid var(--darker-blue);
+    color: var(--button-text);
+    padding: 0px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.button-small:hover {
+    background-color: var(--button-hover-bg);
+    border-color: var(--darker-blue);
+}
+
+.canvas {
+    display: none; 
+    border: 2px dashed #ccc; 
+    padding: 20px; 
+    min-height: 200px;
+}

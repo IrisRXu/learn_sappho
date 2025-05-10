@@ -3,34 +3,47 @@
 {% block content %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'create.js') }}"></script>
 
-    <button id="button" onclick="window.location.href='/fragments'">Review instructions</button>
-    <br>
-
-    <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);">
-        <input type="search" id="search-query" name="query" placeholder="Search keywords..." aria-label="Search">
-        <button type="submit">Search</button>
-    </form>
-
-    <button onclick="submitSearch('Nature')">Nature</button>
-    <button onclick="submitSearch('Sensuality')">Sensuality</button>
-    <button onclick="submitSearch('Love')">Love</button>
-    <button onclick="submitSearch('Life')">Life</button>
-    <button onclick="submitSearch('Divinity')">Divinity</button>
-
-    <div id="results">
-        <ul id="quotes-list">
-            {% for quote in results %}
-                <li class="draggable" data-quote="{{ quote.quote }}">
-                    {{ quote.quote }} (Themes: {{ quote.theme | join(', ') }})
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="row" id="back-button">
+        <p onclick="window.location.href='/fragments'">Review instructions</p>
     </div>
+    
+    <div class="row">
+        <div class="quotes-container col-6">
+            <!-- search box -->
+            <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);">
+                <input type="search" id="search-query" name="query" placeholder="Search keywords..." aria-label="Search">
+                <!-- <button type="submit">Search</button> -->
+            </form>
 
-    <div id="canvas" style="display: none; border: 2px dashed #ccc; padding: 20px; min-height: 200px;">
-        <h2>Drag and Drop Your Elements Here</h2>
+            <!-- filter buttons -->
+            <div class="filter-buttons">
+                <button class="button-small" onclick="submitSearch('Nature')">Nature</button>
+                <button class="button-small" onclick="submitSearch('Sensuality')">Sensuality</button>
+                <button class="button-small" onclick="submitSearch('Love')">Love</button>
+                <button class="button-small" onclick="submitSearch('Life')">Life</button>
+                <button class="button-small" onclick="submitSearch('Divinity')">Divinity</button>
+            </div>
+
+            <!-- quotes -->
+            <div id="results">
+                <ul id="quotes-list">
+                    {% for quote in results %}
+                        <li class="draggable" data-quote="{{ quote.quote }}">
+                            {{ quote.quote }} 
+                            <!-- (Themes: {{ quote.theme | join(', ') }}) -->
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    
+        <div class="canvas-container col-6">
+            <div class="canvas" id="canvas">
+                <h2>Drag and Drop Your Elements Here</h2>
+            </div>
+
+            <div id="submit"><button onclick="submitPoem()">Save and Share (not working)</button></div>
+        </div>
     </div>
-
-    <div id="submit"><button onclick="submitPoem()">Save and Share (not working)</button></div>
 
 {% endblock %}

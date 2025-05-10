@@ -13,6 +13,8 @@ function submitSearch(query) {
     form.submit();
 }
 
+
+
 $(function(){
     const canvas = document.getElementById('canvas');
     canvas.style.display = 'block';

@@ -125,86 +125,13 @@ h1.main-title {
     color: var(--button-text);
 } 
 
-/* quiz page */
-
 h2 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--text-color);
 }
 
-.question-container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    gap: 1.5rem;
-}
 
-.question {
-    flex-shrink: 0; 
-    max-width: none; 
-    text-align: center; 
-}
-
-.description {
-    font-size: 1.1rem;
-    padding: 2rem;
-}
-
-.cards {
-    display: flex;
-    gap: 2rem;
-    margin: 3rem;
-}
-
-.card {
-    width: 500px; /* Fixed width */
-    height: 450px; /* Fixed height */
-    display: inline-block;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 50px;
-    padding: 0px;
-    transition: border-color 0.3s, background-color 0.3s;
-    font-size: 1.1rem;
-}
-
-#feedback {
-    width: 500px; /* Fixed width */
-    height: 450px; /* Fixed height */
-    display: inline-block;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
-    font-size: 1.1rem;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-}
-
-.card.selected {
-    background-color: var(--card-bg-selected);
-    border: 1px solid var(--card-border-selected);
-}
-
-.image-container {
-    width: 100%; 
-    height: 75%;
-    overflow: hidden; 
-    border-radius: 50px 50px 0 0; 
-}
-.image-container img {
-    max-width: 100%;
-    display: block;
-    height: auto;
-    object-fit: cover;
-}
 
 /* Learning Pages Styles */
 .learning-container {
@@ -380,26 +307,26 @@ h2 {
     justify-content: space-around;
     margin-top: 20px;
     font-family: Arial, sans-serif;
-  }
+}
   
 .nav-item {
-text-decoration: none;
-font-size: 16px;
-color: #555;
-padding: 10px 20px;
-position: relative;
-cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    color: #555;
+    padding: 10px 20px;
+    position: relative;
+    cursor: pointer;
 }
 
 .nav-item.active {
-color: #3a9a8d; /* Highlight color for active section */
-font-weight: bold;
+    color: #3a9a8d; /* Highlight color for active section */
+    font-weight: bold;
 }
 
 .nav-item:hover {
-text-decoration: underline;
+    text-decoration: underline;
 }
 
 .nav-item:active {
-color: #2f7c6e; /* Slightly darker color when clicked */
+    color: #2f7c6e; /* Slightly darker color when clicked */
 }
