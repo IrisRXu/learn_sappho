@@ -15,7 +15,9 @@
         </div>
 
         <div class="navigation-buttons">
-            <a href="/" class="main-button primary" onclick="return saveProgress()">Return to Home</a>
+            <a href="/page5-sensuality" class="main-button secondary">Back to Power of Fragments</a>
+            <a href="/" class="main-button secondary" onclick="return saveProgress('/')">Return to Home</a>
+            <a href="/quiz-intro" class="main-button primary" onclick="return saveProgress('/quiz-intro')">Test your knowledge of Sappho!</a>
         </div>
     </section>
 </div>
@@ -23,7 +25,7 @@
 
 {% block scripts %}
 <script>
-function saveProgress() {
+function saveProgress(destination) {
     $.ajax({
         url: '/learning-progress',
         method: 'POST',
@@ -32,7 +34,7 @@ function saveProgress() {
             currentPage: '6'
         }),
         success: function(response) {
-            window.location.href = '/';
+            window.location.href = destination;
         }
     });
     return false;
