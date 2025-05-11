@@ -13,6 +13,7 @@
         </div>
 
         <div class="navigation-buttons">
+            <button onclick="testConsole()" class="main-button primary">Test Console</button>
             <a href="/" class="main-button primary" onclick="return saveProgress()">Return to Home</a>
         </div>
     </section>
@@ -21,7 +22,24 @@
 
 {% block scripts %}
 <script>
+    // Simple test function
+    function testConsole() {
+        alert('Testing console...');
+        console.log('TEST LOG');
+        console.warn('TEST WARNING');
+        console.error('TEST ERROR');
+    }
+
+    // Test on page load
+    window.onload = function() {
+        console.log('Page loaded');
+        testConsole();
+    };
+
     function saveProgress() {
+        alert('Saving progress...');
+        console.log('Save progress started');
+        
         $.ajax({
             url: '/learning-progress',
             method: 'POST',
@@ -30,9 +48,16 @@
                 currentPage: '6'
             }),
             success: function(response) {
+                alert('Progress saved: ' + JSON.stringify(response));
+                console.log('Progress saved:', response);
                 window.location.href = '/';
+            },
+            error: function(error) {
+                alert('Error saving progress');
+                console.error('Error:', error);
             }
         });
+        
         return false;
     }
 </script>

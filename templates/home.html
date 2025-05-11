@@ -3,13 +3,41 @@
 {% block content %}
 <h1 class="main-title">Fragments of Sappho</h1>
 <p class="subtitle">Journey through the poetic fragments of Sappho, whose words on love and desire have echoed across 2,600 years.</p>
+
+<!-- Debug info -->
+<div style="background: #f0f0f0; padding: 10px; margin: 10px 0; font-family: monospace;">
+    DEBUG: Learning completed (raw): {{ learning_completed|tojson }}
+</div>
+
 <div class="button-group">
     <a href="{{ url_for('learning_page', page_id=1) }}" class="main-button primary">Explore</a>
     {% if learning_completed %}
         <a href="{{ url_for('quiz_intro') }}" class="main-button secondary">Test Yourself</a>
     {% else %}
-        <button class="main-button secondary disabled" title="Finish the explore stage first">Test Yourself</button>
+        <button class="main-button secondary disabled" title="Finish the explore stage first" style="pointer-events: auto;">Test Yourself</button>
     {% endif %}
     <a href="{{ url_for('create') }}" class="main-button secondary">Create Your Own</a>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var learningCompleted = {{ learning_completed|tojson }};
+    console.log('DEBUG: Home page loaded');
+    console.log('DEBUG: Learning completed status (raw):', learningCompleted);
+    
+    // Check current learning progress
+    fetch('/learning-progress')
+        .then(response => response.json())
+        .then(data => {
+            console.log('DEBUG: Current learning progress:', data);
+            console.log('DEBUG: Current page:', data.currentPage);
+            console.log('DEBUG: Is completed:', data.completed);
+        })
+        .catch(error => {
+            console.error('DEBUG: Error fetching learning progress:', error);
+        });
+});
+</script>
 {% endblock %} 
