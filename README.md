@@ -4,7 +4,7 @@ TO-DOs
 - change images in learning section
 - navbar: add progress bar
 - implement create page
-    - fix drag and drop bug
+    - done - fix drag and drop bug
     - make database 
     - implement text to downloadable photo
     - implement auto generate poem?

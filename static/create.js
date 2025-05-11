@@ -23,13 +23,27 @@ $(function(){
     $(canvas).droppable({
         drop: function(event, ui) {
             const droppedElement = ui.helper.clone();
+            const canvasOffset = $(this).offset();
+            const elementOffset = ui.offset;
+
+            // Adjust position relative to the canvas
+            droppedElement.css({
+                position: 'absolute',
+                top: elementOffset.top - canvasOffset.top,
+                left: elementOffset.left - canvasOffset.left
+            });
+
             $(this).append(droppedElement);
         }
     });
 
     // Make quotes draggable
     $('.draggable').draggable({
-        helper: 'clone',
+        helper: function() {
+            const clone = $(this).clone();
+            clone.css('width', $(this).outerWidth()); // Preserve original width
+            return clone;
+        },
         revert: 'invalid'
     });
 })
