@@ -20,11 +20,20 @@ function downloadImage() {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas for the final render
 
+    // Fill the canvas with the background color
+    ctx.fillStyle = getComputedStyle(canvas).backgroundColor || 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     // Draw all quotes at their stored positions
     quotePositions.forEach(({ quoteId, x, y }) => {
-        const quoteText = document.getElementById(quoteId).textContent;
-        ctx.font = '20px Arial';
-        ctx.fillStyle = 'black';
+        const quoteElement = document.getElementById(quoteId);
+        const quoteText = quoteElement.textContent;
+
+        // Dynamically retrieve the computed font size and style
+        const computedStyle = window.getComputedStyle(quoteElement);
+        ctx.font = `${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+        ctx.fillStyle = computedStyle.color || 'black';
+
         ctx.fillText(quoteText, x, y); // Draw the quote text at the stored position
     });
 
@@ -72,20 +81,25 @@ document.addEventListener('DOMContentLoaded', () => {
         drawCanvas();
     });
 
-    
-
     // Function to draw the quotes on the canvas
     function drawCanvas() {
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
 
+        // Fill the canvas with the background color
+        ctx.fillStyle = getComputedStyle(canvas).backgroundColor || 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
         quotePositions.forEach(({ quoteId, x, y }) => {
-            const quoteText = document.getElementById(quoteId).textContent;
-            ctx.font = '20px Arial';
-            ctx.fillStyle = 'black';
+            const quoteElement = document.getElementById(quoteId);
+            const quoteText = quoteElement.textContent;
+
+            // Dynamically retrieve the computed font size and style
+            const computedStyle = window.getComputedStyle(quoteElement);
+            ctx.font = `${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+            ctx.fillStyle = computedStyle.color || 'black';
+
             ctx.fillText(quoteText, x, y); // Draw the quote text at the stored position
         });
-    }
-
-    
+    }   
 });

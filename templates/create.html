@@ -20,7 +20,7 @@
             <div class="filter-buttons">
                 <button class="button-small" onclick="submitSearch('Nature')">Nature</button>
                 <button class="button-small" onclick="submitSearch('Sensuality')">Sensuality</button>
-                <button class="button-small" onclick="submitSearch('Love')">Love</button>
+                <!-- <button class="button-small" onclick="submitSearch('Love')">Love</button> -->
                 <button class="button-small" onclick="submitSearch('Life')">Life</button>
                 <button class="button-small" onclick="submitSearch('Divinity')">Divinity</button>
             </div>
@@ -36,11 +36,12 @@
         </div>
     
         <div class="canvas-container col-6">
-            <h2>Drag and Drop Your Elements Here</h2>
-            <canvas id="canvas" width="500" height="300"></canvas>
+            <h2>Drag and Drop Quotes Here</h2>
+            <canvas id="canvas" width="400" height="500"></canvas> 
+            <!-- need to change canvas size here and not in css -->
 
             <div id="download">
-                <button onclick="downloadImage()">Save and Share</button>
+                <button class="button-small" onclick="downloadImage()">Save and Share</button>
             </div>
         </div>
     </div>

@@ -13,7 +13,6 @@
     --button-text: #4A4A4A;
     --secondary-button-bg: #d3d3d3;
 }
-
 #back-button {
     text-decoration: none;
     font-size: 1rem;
@@ -22,7 +21,6 @@
     position: relative;
     cursor: pointer;
 }
-
 #search-query {
     width: 100%;
     padding: 10px;
@@ -33,8 +31,16 @@
     border: 1px solid var(--light-grey);
     background-color: var(--lighter-grey);
 }
-
+.filter-buttons {
+    display: flex;
+    justify-content: space-between; /* Add flexible spacing between buttons */
+    margin: 20px 0px;
+    width: 100%;
+    gap: 10px; /* Optional: Add a consistent gap between buttons */
+}
 .button-small {
+    flex-grow: 1; /* Allow buttons to grow and take up equal space */
+    text-align: center; /* Center text inside the button */
     background-color: var(--blue);
     border: 1px solid var(--darker-blue);
     color: var(--button-text);
@@ -44,20 +50,37 @@
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
-
 .button-small:hover {
     background-color: var(--button-hover-bg);
     border-color: var(--darker-blue);
 }
-
-.canvas {
-    display: none; 
-    border: 2px dashed #ccc; 
-    padding: 20px; 
-    min-height: 200px;
+.canvas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
-
+#canvas {
+    border: 1px var(--light-blue); 
+    background: var(--lighter-blue);
+    border-radius: 10px;
+}
+.row {
+    display: flex;
+    height: 100%; /* Make the row take up the full height of its parent */
+}
+.quote {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    cursor: move;
+    user-select: none;
+}
 .draggable {
     list-style-type: none; /* Remove bullet points */
     padding: 0; /* Remove default padding */
+}
+#download {
+    margin: 10px 0px;
 }
