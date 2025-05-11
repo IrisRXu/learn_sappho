@@ -27,23 +27,21 @@
 
             <!-- quotes -->
             <div id="results">
-                <ul id="quotes-list">
+                <div class="quote-container" id="quotes-container">
                     {% for quote in results %}
-                        <li class="draggable" data-quote="{{ quote.quote }}">
-                            {{ quote.quote }} 
-                            <!-- (Themes: {{ quote.theme | join(', ') }}) -->
-                        </li>
+                        <div class="quote" id="quote{{ loop.index }}" draggable="true">{{ quote.quote }}</div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         </div>
     
         <div class="canvas-container col-6">
-            <div class="canvas" id="canvas">
-                <h2>Drag and Drop Your Elements Here</h2>
-            </div>
+            <h2>Drag and Drop Your Elements Here</h2>
+            <canvas id="canvas" width="500" height="300"></canvas>
 
-            <div id="submit"><button onclick="submitPoem()">Save and Share (not working)</button></div>
+            <div id="download">
+                <button onclick="downloadImage()">Save and Share</button>
+            </div>
         </div>
     </div>
 

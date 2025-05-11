@@ -34,24 +34,6 @@ except json.JSONDecodeError:
     logging.error("Error decoding quotes_data.json")
     quotes_data = []
 
-def load_poetry_lines():
-    all_lines = []
-    try:
-        with gzip.open("gutenberg-poetry-v001.ndjson.gz", "rt") as f:
-            for line in f:
-                all_lines.append(json.loads(line.strip()))
-    except gzip.BadGzipFile:
-        logging.error("gutenberg-poetry-v001.ndjson.gz is not a valid gzip file")
-    except FileNotFoundError:
-        logging.error("gutenberg-poetry-v001.ndjson.gz not found")
-    return all_lines
-
-poetry_lines = load_poetry_lines()
-if poetry_lines:
-    print(f, random.sample(poetry_lines, 8))
-else:
-    logging.error("No poetry lines loaded")
-
 try:
     with open('static/data/learning_data.json') as f:
         learning_data = json.load(f)
@@ -74,6 +56,19 @@ def learning_page(page_id):
             progress = session.get('learning_progress', {})
             return render_template(f'page{page_id}.html', page=page_data, progress=progress)
     return "Page not found", 404
+
+@app.route('/test')
+def test():
+    query = request.args.get('query', '').strip()
+    if query:
+        results = [
+            item for item in quotes_data
+            if query.lower() in item['quote'].lower() 
+            or any(query.lower() in theme.lower() for theme in item['theme'])
+        ]
+    else:
+        results = quotes_data[:3]  # Default to top 3 quotes if no query is provided
+    return render_template('test.html', results=results)
 
 @app.route('/learn')
 def learn():
