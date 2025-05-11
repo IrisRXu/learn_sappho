@@ -6,10 +6,10 @@
 
 <div class="button-group">
     {% if learning_completed %}
-        <a href="{{ url_for('learning_page', page_id=1) }}" class="main-button secondary">Explore</a>
+        <a href="{{ url_for('learning_page', page_id=1) }}" class="main-button secondary" data-explore-button>Explore</a>
         <a href="{{ url_for('quiz_intro') }}" class="main-button primary">Test Yourself</a>
     {% else %}
-        <a href="{{ url_for('learning_page', page_id=1) }}" class="main-button primary">Explore</a>
+        <a href="{{ url_for('learning_page', page_id=1) }}" class="main-button primary" data-explore-button>Explore</a>
         <button class="main-button secondary disabled" title="Finish the explore stage first" style="pointer-events: auto;">Test Yourself</button>
     {% endif %}
     <a href="{{ url_for('create') }}" class="main-button secondary">Create Your Own</a>

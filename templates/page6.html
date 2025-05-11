@@ -1,21 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-    /* Center text in navigation buttons */
-    .navigation-buttons .main-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 40px; /* Ensure consistent height */
-    }
-
-    /* Ensure consistent width for secondary buttons */
-    .navigation-buttons .main-button.secondary {
-        min-width: 100px; /* Give enough space for the text */
-    }
-</style>
-
 <div class="learning-container">
     <section class="learning-section">
         <h1 class="learning-title">{{ page.title }}</h1>
@@ -24,15 +9,12 @@
         </p>
         
         <div class="image-section">
-            <img src="/static/images/learning6.png" alt="Modern Legacy" class="learning-image">
-            <p class="image-caption">A contemporary performance engaged with the fragmentary poetry of Sappho in 2020. Photo Credit: HMD by Robbie Sweeny, video design by Ian Winters.</p>
-        
-        </div>
+            <img src="/static/images/learning5.png" alt="Fragments of Sappho" class="learning-image">
+            <p class="image-caption">Ancient papyrus fragments containing Sappho's poetry, discovered in Egypt.</p>
 
         <div class="navigation-buttons">
-            <a href="/page5-sensuality" class="main-button secondary">Back</a>
-            <a href="/quiz-intro" class="main-button primary" onclick="return saveProgress('/quiz-intro')">Test your knowledge of Sappho!</a>
-            <a href="/" class="main-button secondary" onclick="return saveProgress('/')">Home</a>
+            <a href="/page5" class="main-button secondary">Back</a>
+            <a href="/page7" class="main-button primary" onclick="saveProgress()">Continue</a>
         </div>
     </section>
 </div>
@@ -40,19 +22,25 @@
 
 {% block scripts %}
 <script>
-function saveProgress(destination) {
-    $.ajax({
-        url: '/learning-progress',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            currentPage: '6'
-        }),
-        success: function(response) {
-            window.location.href = destination;
-        }
+    function saveProgress() {
+        $.ajax({
+            url: '/learning-progress',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                currentPage: '{{ page.id }}',
+                completed: true
+            })
+        });
+    }
+
+    // Load progress when page loads
+    $(document).ready(function() {
+        $.get('/learning-progress', function(progress) {
+            if (progress.currentPage) {
+                console.log('Current progress:', progress);
+            }
+        });
     });
-    return false;
-}
 </script>
 {% endblock %} 

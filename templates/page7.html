@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* Center text in navigation buttons */
+    .navigation-buttons .main-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px; /* Ensure consistent height */
+    }
+
+    /* Ensure consistent width for secondary buttons */
+    .navigation-buttons .main-button.secondary {
+        min-width: 100px; /* Give enough space for the text */
+    }
+</style>
+
+<div class="learning-container">
+    <section class="learning-section">
+        <h1 class="learning-title">{{ page.title }}</h1>
+        <p class="learning-content">
+            {{ page.content }}
+        </p>
+        
+        <div class="image-section">
+            <img src="/static/images/learning6.png" alt="Fragments of Sappho" class="learning-image">
+            <p class="image-caption">Ancient papyrus fragments containing Sappho's poetry, discovered in Egypt.</p>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="/page6" class="main-button secondary">Back</a>
+            <a href="/quiz-intro" class="main-button primary" onclick="return saveProgress('/quiz-intro')">Test your knowledge of Sappho!</a>
+            <a href="/" class="main-button secondary" onclick="return saveProgress('/')">Home</a>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function saveProgress(destination) {
+        $.ajax({
+            url: '/learning-progress',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                currentPage: '7'
+            }),
+            success: function(response) {
+                window.location.href = destination;
+            }
+        });
+        return false;
+    }
+</script>
+{% endblock %} 
