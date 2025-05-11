@@ -125,7 +125,44 @@ h1.main-title {
 .main-button.secondary:hover {
     text-decoration: none;
     color: var(--button-text);
-} 
+}
+
+.main-button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    position: relative;
+    pointer-events: auto; /* Allow hover events */
+}
+
+.main-button.disabled:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 8px;
+    pointer-events: none; /* Prevent tooltip from interfering with hover */
+}
+
+.main-button.disabled:hover::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% - 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    z-index: 1000;
+    pointer-events: none; /* Prevent arrow from interfering with hover */
+}
 
 h2 {
     font-size: 1.5rem;

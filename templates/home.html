@@ -5,7 +5,11 @@
 <p class="subtitle">Journey through the poetic fragments of Sappho, whose words on love and desire have echoed across 2,600 years.</p>
 <div class="button-group">
     <a href="{{ url_for('learning_page', page_id=1) }}" class="main-button primary">Explore</a>
-    <a href="{{ url_for('quiz_intro') }}" class="main-button secondary">Test Yourself</a>
+    {% if learning_completed %}
+        <a href="{{ url_for('quiz_intro') }}" class="main-button secondary">Test Yourself</a>
+    {% else %}
+        <button class="main-button secondary disabled" title="Finish the explore stage first">Test Yourself</button>
+    {% endif %}
     <a href="{{ url_for('create') }}" class="main-button secondary">Create Your Own</a>
 </div>
 {% endblock %} 

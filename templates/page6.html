@@ -10,11 +10,10 @@
         
         <div class="image-section">
             <img src="/static/images/4A.png" alt="Modern Legacy" class="learning-image">
-            <p class="image-caption">Sappho's influence on modern poetry and culture</p>
         </div>
 
         <div class="navigation-buttons">
-            <a href="/{{ page.next_page }}" class="main-button primary" onclick="saveProgress()">Continue to Quiz</a>
+            <a href="/" class="main-button primary" onclick="return saveProgress()">Return to Home</a>
         </div>
     </section>
 </div>
@@ -28,19 +27,13 @@
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                currentPage: '{{ page.id }}',
-                completed: true
-            })
-        });
-    }
-
-    // Load progress when page loads
-    $(document).ready(function() {
-        $.get('/learning-progress', function(progress) {
-            if (progress.currentPage) {
-                console.log('Current progress:', progress);
+                currentPage: '6'
+            }),
+            success: function(response) {
+                window.location.href = '/';
             }
         });
-    });
+        return false;
+    }
 </script>
 {% endblock %} 
