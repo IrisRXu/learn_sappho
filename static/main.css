@@ -40,7 +40,8 @@ body {
 
 .statue-left {
     position: fixed;
-    left: 20px;
+    left: 0px; /*remove the 20px offset*/
+    /* left: 20px; */
     bottom: 0;
     height: 80vh;
     max-height: 800px;
@@ -49,7 +50,8 @@ body {
 
 .statue-right {
     position: fixed;
-    right: 30px;
+    right: 0px; /*remove the 20px offset*/
+    /* right: 20px; */
     bottom: 0;
     height: 80vh;
     max-height: 800px;
