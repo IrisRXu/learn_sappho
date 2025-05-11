@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+    /* Center text in navigation buttons */
+    .navigation-buttons .main-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px; /* Ensure consistent height */
+    }
+
+    /* Ensure consistent width for secondary buttons */
+    .navigation-buttons .main-button.secondary {
+        min-width: 100px; /* Give enough space for the text */
+    }
+</style>
+
 <div class="learning-container">
     <section class="learning-section">
         <h1 class="learning-title">{{ page.title }}</h1>
@@ -15,9 +30,9 @@
         </div>
 
         <div class="navigation-buttons">
-            <a href="/page5-sensuality" class="main-button secondary">Back to Power of Fragments</a>
-            <a href="/" class="main-button secondary" onclick="return saveProgress('/')">Return to Home</a>
+            <a href="/page5-sensuality" class="main-button secondary">Back</a>
             <a href="/quiz-intro" class="main-button primary" onclick="return saveProgress('/quiz-intro')">Test your knowledge of Sappho!</a>
+            <a href="/" class="main-button secondary" onclick="return saveProgress('/')">Home</a>
         </div>
     </section>
 </div>
