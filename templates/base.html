@@ -44,9 +44,27 @@
         <div class="navbar">
             <a href="/" class="nav-item" onclick="navigateTo('/')">Home</a>
             <a href="/page1" class="nav-item" onclick="navigateTo('/page1')">Explore</a>
-            <a href="/quiz-intro" class="nav-item" onclick="navigateTo('/quiz-intro')">Test Yourself</a>
+            {% if current_page >= 6 %}
+                <a href="/quiz-intro" class="nav-item" onclick="navigateTo('/quiz-intro')">Test Yourself</a>
+            {% else %}
+                <span class="nav-item disabled" title="Please complete exploring stage first">Test Yourself</span>
+            {% endif %}
             <a href="/create" class="nav-item" onclick="navigateTo('/create')">Create Your Own</a>
         </div>
+
+        <style>
+            .nav-item.disabled {
+                color: #888;
+                cursor: not-allowed;
+                pointer-events: none;
+                opacity: 0.6;
+            }
+
+            /* Add hover effect for disabled items */
+            .nav-item.disabled:hover {
+                cursor: not-allowed;
+            }
+        </style>
 
         <div class="main-container">
             <img src="{{url_for('static', filename='images/image1.png')}}" alt="Left statue" class="statue-left">

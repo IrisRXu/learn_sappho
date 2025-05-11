@@ -13,6 +13,20 @@ from rich import _console
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# Add context processor to provide current_page to all templates
+@app.context_processor
+def utility_processor():
+    def get_current_page():
+        if os.path.exists('learning_progress.json'):
+            try:
+                with open('learning_progress.json', 'r') as f:
+                    progress = json.load(f)
+                    return int(progress.get('currentPage', 1))
+            except:
+                return 1
+        return 1
+    return {'current_page': get_current_page()}
+
 # load data from JSON files with error handling
 try:
     with open('static/data/quiz_data.json') as f:
@@ -62,11 +76,11 @@ def home():
                 print(f"Progress data from file: {progress}")
                 
                 # Only check currentPage value
-                current_page = str(progress.get('currentPage', '1'))
+                current_page = int(progress.get('currentPage', 1))
                 print(f"Current page from file: {current_page}")
                 
                 # Only set to True if explicitly on page 6
-                learning_completed = (current_page == '6')
+                learning_completed = (current_page >= 6)
                 print(f"Learning completed based on current_page: {learning_completed}")
         except Exception as e:
             learning_completed = False
@@ -164,15 +178,15 @@ def get_learning_progress():
         if os.path.exists('learning_progress.json'):
             with open('learning_progress.json', 'r') as f:
                 progress = json.load(f)
-                current_page = str(progress.get('currentPage', '1'))
+                current_page = int(progress.get('currentPage', 1))
                 print(f"Current progress from file: {progress}")
                 return jsonify({
                     "currentPage": current_page,
-                    "completed": (current_page == '6')
+                    "completed": (current_page >= 6)
                 })
         else:
             print("No learning_progress.json file found")
-            return jsonify({"currentPage": "1", "completed": False})
+            return jsonify({"currentPage": 1, "completed": False})
     except Exception as e:
         print(f"Error reading progress: {str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -186,7 +200,7 @@ def save_learning_progress():
             print("No JSON data received")
             return jsonify({"error": "No data received"}), 400
             
-        current_page = str(data.get('currentPage', '1'))
+        current_page = int(data.get('currentPage', 1))
         print(f"Current page to save: {current_page}")
         
         # Only save the current page
@@ -200,7 +214,7 @@ def save_learning_progress():
         print("Successfully saved progress to file")
         
         # Return completion status based only on current page
-        is_completed = (current_page == '6')
+        is_completed = (current_page >= 6)
         return jsonify({
             "status": "success",
             "currentPage": current_page,
