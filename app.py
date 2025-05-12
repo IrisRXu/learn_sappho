@@ -181,7 +181,7 @@ def create():
             or any(query.lower() in theme.lower() for theme in item['theme'])
         ]
     else:
-        results = quotes_data[:3]  # Default to top 3 quotes if no query is provided
+        results = quotes_data  # Default to top 3 quotes if no query is provided
 
     return render_template('create.html', results=results)
 

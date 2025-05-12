@@ -27,7 +27,9 @@ function downloadImage() {
     // Draw all quotes at their stored positions
     quotePositions.forEach(({ quoteId, x, y }) => {
         const quoteElement = document.getElementById(quoteId);
-        const quoteText = quoteElement.textContent;
+        const quoteHtml = quoteElement.innerHTML;
+
+        const quoteText = quoteHtml.replace(/<br\s*\/?>/g, '\n');
 
         // Dynamically retrieve the computed font size and style
         const computedStyle = window.getComputedStyle(quoteElement);
@@ -35,13 +37,18 @@ function downloadImage() {
         ctx.fillStyle = computedStyle.color || 'black';
 
         const lines = quoteText.split('\n');
+        console.log('draw: quoteHTML: ', quoteHtml);
+        console.log('draw: quoteelement: ', quoteElement);
+        console.log(`draw: quoteText: ${quoteText}`);
+        console.log('draw: lines: ', lines);
         const lineHeight = parseInt(computedStyle.fontSize, 10) * 1.2; // Default line height if not set
 
         lines.forEach((line, index) => {
-            console.log(`Drawing line: ${line} at position (${x}, ${y + index * lineHeight})`);
+            console.log(`draw: Drawing line: ${line} at position (${x}, ${y + index * lineHeight})`);
             ctx.fillText(line, x, y + index * lineHeight);
         });
     });
+  
 
     // Create a download link for the canvas as an image
     const link = document.createElement('a');

@@ -63,7 +63,6 @@
     border-color: var(--blue);
 } */
 .canvas-container {
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -78,6 +77,10 @@
 .row {
     display: flex;
     height: 100%; /* Make the row take up the full height of its parent */
+}
+.quote-container {
+    max-height: 450px;
+    overflow: auto;
 }
 .quote {
     padding: 20px 20px;
