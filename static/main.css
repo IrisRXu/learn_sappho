@@ -389,16 +389,16 @@ h2 {
     white-space: nowrap;
 } */
 .progress-bar {
-    width: 80px;
+    width: 150px;
     height: 10px;
-    background-color: transparent;
-    border: 1px solid #B76E79;
+    background-color: var(--card-bg);
+    border: 1px solid #555;
     border-radius: 10px;
     overflow: hidden;
 }
 .progress-fill {
     height: 100%;
-    background-color: #B76E79;
+    background-color: var(--button-border);
     width: 0;
 }
 /* Update navbar to accommodate progress bar */
@@ -419,4 +419,18 @@ h2 {
 }
 .nav-item.disabled:hover {
     cursor: not-allowed;
+}
+.nav-item {
+    text-decoration: none;
+    color: #555;
+    position: relative;
+    cursor: pointer;
+}
+.nav-item:hover {
+    color: var(--button-border);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+body.home-page .progress-container {
+    display: none;
 }

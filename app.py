@@ -90,7 +90,7 @@ def home():
     print(f"Quiz completed: {quiz_completed}")
     
     # Pass both values to the template
-    return render_template('home.html', learning_completed=learning_completed, quiz_completed=quiz_completed)
+    return render_template('home.html', learning_completed=learning_completed, quiz_completed=quiz_completed, body_class="home-page")
 
     # print("Starting home route with learning_completed = False")
     
