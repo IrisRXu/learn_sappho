@@ -357,14 +357,15 @@ h2 {
 }
 
 .nav-item.active {
-    color: #3a9a8d; /* Highlight color for active section */
+    color: var(--darker-blue); /* Highlight color for active section */
     font-weight: bold;
 }
 
 .nav-item:hover {
-    text-decoration: underline;
+    color: var(--darker-blue);
+    text-decoration: none;
 }
 
 .nav-item:active {
-    color: #2f7c6e; /* Slightly darker color when clicked */
+    color: var(--darker-blue); /* Slightly darker color when clicked */
 }

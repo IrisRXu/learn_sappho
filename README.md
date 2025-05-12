@@ -1,12 +1,7 @@
 TO-DOs
-- disable quiz and creation before learning is complete
-- add analysis to explore section
-- change images in learning section
 - navbar: add progress indicator
 - implement create page
-    - done - fix drag and drop bug
     - make database 
-    - done - implement text to downloadable photo
     - implement auto generate poem?
 
 Claudia's Checklist

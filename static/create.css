@@ -17,9 +17,12 @@
     text-decoration: none;
     font-size: 1rem;
     color: var(--text-color);
-    padding: 10px 20px;
     position: relative;
     cursor: pointer;
+    text-align: left;
+}
+#back-button:hover {
+    color: var(--darker-blue);
 }
 #search-query {
     width: 100%;
