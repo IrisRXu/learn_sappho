@@ -14,14 +14,19 @@
 
         <div class="navigation-buttons">
             <a href="/page5" class="main-button secondary">Back</a>
-            <a href="/page7" class="main-button primary" onclick="saveProgress()">Continue</a>
+            <a href="/page7" class="main-button primary" onclick="saveProgress(true)">Continue</a>
         </div>
     </section>
 </div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/static/main.js"></script>
 <script>
+    updateProgress("explore", 6, 7);
+</script>
+
+<!-- <script>
     function saveProgress() {
         $.ajax({
             url: '/learning-progress',
@@ -41,6 +46,6 @@
                 console.log('Current progress:', progress);
             }
         });
-    });
+    }); -->
 </script>
 {% endblock %} 

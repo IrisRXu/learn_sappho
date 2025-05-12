@@ -251,6 +251,11 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="/static/main.js"></script>
+<script>
+    updateProgress("explore", 5, 7);
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const poemLines = document.querySelectorAll('.poem-line');

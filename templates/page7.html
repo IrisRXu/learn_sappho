@@ -30,15 +30,21 @@
 
         <div class="navigation-buttons">
             <a href="/page6" class="main-button secondary">Back</a>
-            <a href="/quiz-intro" class="main-button primary" onclick="return saveProgress('/quiz-intro')">Test your knowledge of Sappho!</a>
-            <a href="/" class="main-button secondary" onclick="return saveProgress('/')">Home</a>
+            <a href="/quiz-intro" class="main-button primary" >Test your knowledge of Sappho!</a>
+            <a href="/" class="main-button secondary">Home</a>
+            <!-- onclick="saveProgress(true)" -->
         </div>
     </section>
 </div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/static/main.js"></script>
 <script>
+    updateProgress("explore", 7, 7);
+    // enableQuizNavItem();
+</script>
+<!-- <script>
     function saveProgress(destination) {
         $.ajax({
             url: '/learning-progress',
@@ -53,5 +59,5 @@
         });
         return false;
     }
-</script>
+</script> -->
 {% endblock %} 

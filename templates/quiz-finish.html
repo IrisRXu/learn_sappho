@@ -11,6 +11,14 @@
     </div>
     <div class="button-group">
         <button class="main-button secondary" onclick="startQuiz()">Restart Quiz</button>
-        <button class="main-button primary" onclick="window.location.href='fragments'">Continue</button>
+        <button class="main-button primary" onclick="handleFinishQuiz()">Finish Quiz and Create Your Own</button>
     </div>
 {% endblock %}
+
+{% block scripts %}
+<script src="/static/main.js"></script>
+<script>
+    updateProgress("explore", 1, 1);
+    updateProgress("quiz", 9, 9);
+</script>
+{% endblock %} 

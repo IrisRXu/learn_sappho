@@ -13,15 +13,19 @@
         </div>
 
         <div class="navigation-buttons">
-            <a href="/page3" class="main-button secondary" onclick="saveProgress()">Back to Legacy</a>
-            <a href="/page5" class="main-button primary" onclick="saveProgress()">Continue to Poem 31</a>
+            <a href="/page3" class="main-button secondary">Back to Legacy</a>
+            <a href="/page5" class="main-button primary">Continue to Poem 31</a>
         </div>
     </section>
 </div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/static/main.js"></script>
 <script>
+    updateProgress("explore", 4, 7);
+</script>
+<!-- <script>
     function saveProgress() {
         $.ajax({
             url: '/learning-progress',
@@ -42,5 +46,5 @@
             }
         });
     });
-</script>
+</script> -->
 {% endblock %} 

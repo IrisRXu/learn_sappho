@@ -52,3 +52,12 @@
     </div>
 
 {% endblock %}
+
+{% block scripts %}
+<script src="/static/main.js"></script>
+<script>
+    updateProgress("explore", 1, 1);
+    updateProgress("quiz", 1, 1);
+    updateProgress("create", 2, 2);
+</script>
+{% endblock %} 

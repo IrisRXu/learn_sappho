@@ -4,7 +4,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
 
     <section id="intro">
-        <div class="description">
+        <div>
             <h1>Test Yourself</h1>
             <br>
             <div class="learning-content">
@@ -19,3 +19,10 @@
     <section id="quiz" style="display: none;"></section>
 {% endblock %}
 
+{% block scripts %}
+<script src="/static/main.js"></script>
+<script>
+    updateProgress("explore", 1, 1);
+    updateProgress("quiz", 1, 9);
+</script>
+{% endblock %} 

@@ -16,26 +16,36 @@ app.secret_key = os.urandom(24)
 # Add context processor to provide current_page to all templates
 @app.context_processor
 def utility_processor():
-    def get_current_page():
-        if os.path.exists('learning_progress.json'):
-            try:
-                with open('learning_progress.json', 'r') as f:
-                    progress = json.load(f)
-                    return int(progress.get('currentPage', 1))
-            except:
-                return 1
-        return 1
+    # def get_current_page():
+    #     if os.path.exists('learning_progress.json'):
+    #         try:
+    #             with open('learning_progress.json', 'r') as f:
+    #                 progress = json.load(f)
+    #                 return int(progress.get('currentPage', 1))
+    #         except:
+    #             return 1
+    #     return 1
 
-    # Get quiz progress
-    quiz_progress = session.get('quiz_progress', {})
-    # Count questions that have been answered (have a selected_answer)
-    completed_questions = len([q for q in quiz_progress.values() if isinstance(q, dict) and 'selected_answer' in q])
+    # # Get quiz progress
+    # quiz_progress = session.get('quiz_progress', {})
+    # # Count questions that have been answered (have a selected_answer)
+    # completed_questions = len([q for q in quiz_progress.values() if isinstance(q, dict) and 'selected_answer' in q])
     
-    return {
-        'current_page': get_current_page(),
-        'quiz_progress': completed_questions,
-        'total_quiz_questions': len(quiz_data)
-    }
+    # return {
+    #     'current_page': get_current_page(),
+    #     'quiz_progress': completed_questions,
+    #     'total_quiz_questions': len(quiz_data)
+    # }
+    def is_learning_completed():
+        return session.get('learning_completed', False)
+    return {'learning_completed': is_learning_completed()}
+    
+@app.context_processor
+def utility_processor():
+    def is_quiz_completed():
+        return session.get('quiz_completed', False)  # Default to False if not set
+
+    return {'quiz_completed': is_quiz_completed()}
 
 # load data from JSON files with error handling
 try:
@@ -71,36 +81,47 @@ except json.JSONDecodeError:
 @app.route('/')
 def home():
     print("\n=== HOME ROUTE ===")
-    print("Starting home route with learning_completed = False")
+
+    learning_completed = session.get('learning_completed', False)
+    quiz_completed = session.get('quiz_completed', False)
     
-    # Explicitly set to False
-    learning_completed = False
-    print(f"Initial learning_completed: {learning_completed}")
+    # Debug prints for verification
+    print(f"Learning completed: {learning_completed}")
+    print(f"Quiz completed: {quiz_completed}")
     
-    # Only try to read file if it exists
-    if os.path.exists('learning_progress.json'):
-        try:
-            print("Found learning_progress.json file")
-            with open('learning_progress.json', 'r') as f:
-                progress = json.load(f)
-                print(f"Progress data from file: {progress}")
+    # Pass both values to the template
+    return render_template('home.html', learning_completed=learning_completed, quiz_completed=quiz_completed)
+
+    # print("Starting home route with learning_completed = False")
+    
+    # # Explicitly set to False
+    # learning_completed = False
+    # print(f"Initial learning_completed: {learning_completed}")
+    
+    # # Only try to read file if it exists
+    # if os.path.exists('learning_progress.json'):
+    #     try:
+    #         print("Found learning_progress.json file")
+    #         with open('learning_progress.json', 'r') as f:
+    #             progress = json.load(f)
+    #             print(f"Progress data from file: {progress}")
                 
-                # Only check currentPage value
-                current_page = int(progress.get('currentPage', 1))
-                print(f"Current page from file: {current_page}")
+    #             # Only check currentPage value
+    #             current_page = int(progress.get('currentPage', 1))
+    #             print(f"Current page from file: {current_page}")
                 
-                # Update to check for page 7 completion
-                learning_completed = (current_page >= 7)
-                print(f"Learning completed based on current_page: {learning_completed}")
-        except Exception as e:
-            learning_completed = False
-            print(f"Error reading progress file: {str(e)}")
-    else:
-        learning_completed = False
-        print("No progress file found, learning_completed stays False")
+    #             # Update to check for page 7 completion
+    #             learning_completed = (current_page >= 7)
+    #             print(f"Learning completed based on current_page: {learning_completed}")
+    #     except Exception as e:
+    #         learning_completed = False
+    #         print(f"Error reading progress file: {str(e)}")
+    # else:
+    #     learning_completed = False
+    #     print("No progress file found, learning_completed stays False")
     
-    print(f"=== Final learning_completed value: {learning_completed} ===")
-    return render_template('home.html', learning_completed=learning_completed)
+    # print(f"=== Final learning_completed value: {learning_completed} ===")
+    # return render_template('home.html', learning_completed=learning_completed)
 
 @app.route('/page<int:page_id>')
 def learning_page(page_id):
@@ -136,21 +157,24 @@ def learn():
 def quiz_intro():
     return render_template('quiz-intro.html')
 
-@app.route('/quiz-progress', methods=['GET'])
-def get_quiz_progress():
-    progress = session.get('quiz_progress', {})
-    return jsonify(progress)
+@app.route('/quiz-score', methods=['GET'])
+def get_quiz_score():
+    score = session.get('quiz_score', {})
+    return jsonify(score)
 
-@app.route('/quiz-progress', methods=['POST'])
-def save_quiz_progress():
-    session['quiz_progress'] = request.json
+@app.route('/quiz-score', methods=['POST'])
+def save_quiz_score():
+    data = request.json
+    print(f"Received data for quiz score: {data}")  # Debugging
+    session['quiz_score'] = data
+    print(f"Updated session data: {session['quiz_score']}")  # Debugging
     return jsonify({"status": "success"})
 
 @app.route('/quiz/<id>')
 def quiz(id=None):
     global quiz_data
 
-    progress = session.get('quiz_progress', {})
+    progress = session.get('quiz_score', {})
     question = quiz_data[int(id)] if id and id.isdigit() and int(id) < len(quiz_data) else None
     
     if question:
@@ -160,7 +184,7 @@ def quiz(id=None):
 
 @app.route('/quiz-finish')
 def quiz_finish():
-    progress = session.get('quiz_progress', {})
+    progress = session.get('quiz_score', {})
     total_questions = len(quiz_data)
     print(f"Total questions: {total_questions}")
     if not progress:
@@ -185,58 +209,49 @@ def create():
 
     return render_template('create.html', results=results)
 
+# @app.route('/learning-progress', methods=['GET'])
+# def get_learning_progress():
+#     print("\n=== GET LEARNING PROGRESS ===")
+#     try:
+#         if os.path.exists('learning_progress.json'):
+#             with open('learning_progress.json', 'r') as f:
+#                 progress = json.load(f)
+#                 current_page = int(progress.get('currentPage', 1))
+#                 print(f"Current progress from file: {progress}")
+#                 return jsonify({
+#                     "currentPage": current_page,
+#                     "completed": (current_page >= 7)
+#                 })
+#         else:
+#             print("No learning_progress.json file found")
+#             return jsonify({"currentPage": 1, "completed": False})
+#     except Exception as e:
+#         print(f"Error reading progress: {str(e)}")
+#         return jsonify({"error": str(e)}), 500
+
 @app.route('/learning-progress', methods=['GET'])
 def get_learning_progress():
-    print("\n=== GET LEARNING PROGRESS ===")
-    try:
-        if os.path.exists('learning_progress.json'):
-            with open('learning_progress.json', 'r') as f:
-                progress = json.load(f)
-                current_page = int(progress.get('currentPage', 1))
-                print(f"Current progress from file: {progress}")
-                return jsonify({
-                    "currentPage": current_page,
-                    "completed": (current_page >= 7)
-                })
-        else:
-            print("No learning_progress.json file found")
-            return jsonify({"currentPage": 1, "completed": False})
-    except Exception as e:
-        print(f"Error reading progress: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+    print(f"Session data in GET route: {session}")  # Debug print
+    learning_completed = session.get('learning_completed', False)
+    return jsonify({"learning_completed": learning_completed})
 
 @app.route('/learning-progress', methods=['POST'])
 def save_learning_progress():
-    print("\n=== SAVE LEARNING PROGRESS ===")
-    try:
-        data = request.json
-        if not data:
-            print("No JSON data received")
-            return jsonify({"error": "No data received"}), 400
-            
-        current_page = int(data.get('currentPage', 1))
-        print(f"Current page to save: {current_page}")
-        
-        # Only save the current page
-        progress_data = {
-            'currentPage': current_page
-        }
-        print(f"Progress data to save: {progress_data}")
-        
-        with open('learning_progress.json', 'w') as f:
-            json.dump(progress_data, f)
-        print("Successfully saved progress to file")
-        
-        # Update completion check for page 7
-        is_completed = (current_page >= 7)
-        return jsonify({
-            "status": "success",
-            "currentPage": current_page,
-            "completed": is_completed
-        })
-    except Exception as e:
-        print(f"Error saving progress: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+    data = request.json
+    print(f"Received POST data: {data}")  # Debugging
+    learning_completed = data.get('learning_completed', False)
+    session['learning_completed'] = learning_completed
+    print(f"Session data after saving learning progress: {session}")  # Debug print
+
+    return jsonify({"status": "success", "learning_completed": learning_completed})
+
+@app.route('/quiz-progress', methods=['POST'])
+def save_quiz_progress():
+    data = request.json
+    quiz_completed = data.get('quiz_completed', False)
+    session['quiz_completed'] = quiz_completed  # Save to session
+    print(f"Session data after saving quiz progress: {session}")
+    return jsonify({"status": "success", "quiz_completed": quiz_completed})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

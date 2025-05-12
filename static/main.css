@@ -371,28 +371,29 @@ h2 {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 5px;
 }
 .progress-container {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 8px;
-    padding-left: 2px;
+    /* padding-left: 2px; */
 }
 .progress-container.visible {
     display: flex;
 }
-.progress-label {
+/* .progress-label {
     color: #888;
     font-size: 0.8rem;
     white-space: nowrap;
-}
+} */
 .progress-bar {
     width: 80px;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
+    height: 10px;
+    background-color: transparent;
+    border: 1px solid #B76E79;
+    border-radius: 10px;
     overflow: hidden;
 }
 .progress-fill {
@@ -403,9 +404,12 @@ h2 {
 /* Update navbar to accommodate progress bar */
 .navbar {
     display: flex;
-    align-items: center;
-    padding: 0 20px;
-    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 10px 20px;
+    font-family: var(--main-font);
+    font-weight: bold;
+    color: #555;
 }
 .nav-item.disabled {
     color: #888;
@@ -413,7 +417,6 @@ h2 {
     pointer-events: none;
     opacity: 0.6;
 }
-/* Add hover effect for disabled items */
 .nav-item.disabled:hover {
     cursor: not-allowed;
 }

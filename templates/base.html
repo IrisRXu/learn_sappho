@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
- 
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">    
@@ -29,37 +28,63 @@
     <script type="text/javascript" src="{{ url_for('static', filename = 'main.js') }}"></script>
 
     <title>{% block title %}Fragments of Sappho{% endblock %}</title>
-    </head>
+</head>
 
-    <body>
-        <div class="navbar fixed-top">
-            <a href="/" class="nav-item" onclick="navigateTo('/')">Home</a>
+<body>
+    <div class="navbar fixed-top">
+        <!-- home -->
+        <a href="/" class="nav-item" onclick="navigateTo('/')">Home</a>
+
+        <!-- explore -->
+        <div class="nav-group">
+            <a href="/page1" class="nav-item" data-explore-button onclick="navigateTo('/page1')">Explore</a>
+            <div class="progress-container" id="explore">
+                <!-- <span class="progress-label"></span> -->
+                <div class="progress-bar">
+                    <div class="progress-fill" id="explore-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- quiz -->
+        {% if learning_completed %}
             <div class="nav-group">
-                <a href="/page1" class="nav-item" data-explore-button onclick="navigateTo('/page1')">Explore</a>
-                <div class="progress-container">
-                    <span class="progress-label"></span>
+                <a href="/quiz-intro" class="nav-item" onclick="navigateTo('/quiz-intro')">Test Yourself</a>
+                <div class="progress-container" id="quiz">
                     <div class="progress-bar">
-                        <div class="progress-fill"></div>
+                        <div class="progress-fill" id="quiz-progress"></div>
                     </div>
                 </div>
             </div>
-            {% if current_page >= 6 %}
-                <a href="/quiz-intro" class="nav-item" onclick="navigateTo('/quiz-intro')">Test Yourself</a>
-            {% else %}
-                <span class="nav-item disabled" title="Please complete exploring stage first">Test Yourself</span>
-            {% endif %}
-            <a href="/create" class="nav-item" onclick="navigateTo('/create')">Create Your Own</a>
-        </div>
+        {% else %}
+        <span class="nav-item disabled" id="quiz-disabled" title="Please complete exploring stage first">Test Yourself</span>
+        {% endif %}
 
-        <div class="main-container">
-            <img src="{{url_for('static', filename='images/image1.png')}}" alt="Left statue" class="statue-left">
-            <img src="{{url_for('static', filename='images/image2.png')}}" alt="Right statue" class="statue-right">
-            <div class="content-wrapper">
-                {% block content %}
-                {% endblock %}
+        <!-- create -->
+        {% if quiz_completed %}
+        <div class="nav-group">
+            <a href="/create" class="nav-item" onclick="navigateTo('/create')">Create Your Own</a>
+            <div class="progress-container" id="create">
+                <!-- <span class="progress-label"></span> -->
+                <div class="progress-bar">
+                    <div class="progress-fill" id="create-progress"></div>
+                </div>
             </div>
         </div>
+        {% else %}
+            <span class="nav-item disabled" title="Please complete exploring stage first">Create Your Own</span>
+        {% endif %}
+    </div>
 
-        {% block scripts %}{% endblock %}
-    </body>
+    <div class="main-container">
+        <img src="{{url_for('static', filename='images/image1.png')}}" alt="Left statue" class="statue-left">
+        <img src="{{url_for('static', filename='images/image2.png')}}" alt="Right statue" class="statue-right">
+        <div class="content-wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
 </html>

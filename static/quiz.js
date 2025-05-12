@@ -5,7 +5,7 @@ let selectedCard = null;
 let quizLength = 7;
 
 function startQuiz() {
-  fetch('/quiz-progress', { 
+  fetch('/quiz-score', { 
     method: 'POST', 
     body: JSON.stringify({ currentQuestion: 1, score: 0 }), 
     headers: { 'Content-Type': 'application/json' } 
@@ -35,21 +35,22 @@ function submitAnswer() {
   // console.log("current question id:", questionID);
   const isCorrect = selectedAnswer === correctAnswer;
   
-  fetch('/quiz-progress', {
+  fetch('/quiz-score', {
     method: 'GET'
   })
   .then(response => response.json())
-  .then(currentProgress => {
-    const newScore = currentProgress.score || 0;
+  .then(currentScore => {
+    console.log("Current score being sent:", currentScore);
+    const newScore = currentScore.score || 0;
     const updatedScore = isCorrect ? newScore + 1 : newScore;
     const updatedProgress = {
       currentQuestion: questionID + 1,
       score: updatedScore,
     };
 
-    // console.log("2 current question id:", questionID);
+    console.log("Updated progress being sent:", updatedProgress);
 
-    return fetch('/quiz-progress', {
+    return fetch('/quiz-score', {
       method: 'POST',
       body: JSON.stringify(updatedProgress),
       headers: { 'Content-Type': 'application/json' }
@@ -117,3 +118,4 @@ function nextQuestion() {
     window.location.href=`/quiz-finish`;
   }
 }
+

@@ -2,6 +2,9 @@ TO-DOs
 - navbar: add progress indicator
 - implement create page
     - implement auto generate poem?
+- what does this ajax do? learning page 6 - ajax sends completed: true
+- bug: disabled create page from home page, but the button on homepage is not disabled **how did you disable it**
+- bug: if you go back to learning after quiz and create, **quiz and create are disabled**, progress bar goes back to only learning completed
 
 Claudia's Checklist
 needs work:

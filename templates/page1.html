@@ -13,14 +13,18 @@
         </div>
 
         <div class="navigation-buttons">
-            <a href="/page{{ page.next_page }}" class="main-button primary" onclick="saveProgress()">Continue</a>
+            <a href="/page{{ page.next_page }}" class="main-button primary">Continue</a>
         </div>
     </section>
 </div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/static/main.js"></script>
 <script>
+    updateProgress("explore", 1, 7);
+</script>
+<!-- <script>
     function saveProgress() {
         $.ajax({
             url: '/learning-progress',
@@ -41,5 +45,5 @@
             }
         });
     });
-</script>
+</script> -->
 {% endblock %} 
