@@ -15,6 +15,9 @@ function submitSearch(query) {
 // Array to store quote positions
 const quotePositions = [];
 
+// Variable to store the mouse offset relative to the quote
+let mouseOffset = { x: 0, y: 0 };
+
 // Function to download the canvas content as an image
 function downloadImage() {
     const ctx = canvas.getContext('2d');
@@ -73,6 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to handle drag start
     document.querySelectorAll('.quote').forEach((quote) => {
         quote.addEventListener('dragstart', (event) => {
+            const rect = event.target.getBoundingClientRect();
+            mouseOffset.x = event.clientX - rect.left;
+            mouseOffset.y = event.clientY - rect.top;
             event.dataTransfer.setData('text/plain', event.target.id);
             event.target.classList.add('quote-dragging');
         });
@@ -94,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const quote = document.getElementById(quoteId);
         const canvasRect = canvas.getBoundingClientRect();
 
-        // Get mouse position relative to canvas
-        const mouseX = event.clientX - canvasRect.left;
-        const mouseY = event.clientY - canvasRect.top;
+        // Get mouse position relative to canvas and adjust by mouse offset
+        const mouseX = event.clientX - canvasRect.left - mouseOffset.x;
+        const mouseY = event.clientY - canvasRect.top - mouseOffset.y;
 
         // Store the dropped position of the quote
         quotePositions.push({ quoteId, x: mouseX, y: mouseY });
