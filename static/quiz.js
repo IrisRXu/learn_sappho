@@ -2,7 +2,7 @@
 // let currentQuestion = 0;
 // let score = 0;
 let selectedCard = null;
-let quizLength = 5;
+let quizLength = 7;
 
 function startQuiz() {
   fetch('/quiz-progress', { 

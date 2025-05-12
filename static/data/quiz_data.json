@@ -44,6 +44,23 @@
     "photoB": "/static/images/5B.png",
     "answer": "B",
     "feedback": "In her own time, Sappho was admired for her poetic skill. The interpretation of Sappho as a queer icon emerged in the 19th century, when scholars and artists began to explore her poetry's themes of love between women in the context of same-sex desire. While her poems express deep affection for women, ancient audiences may not have understood or labeled this in the way modern queer identity is defined today."
-
+  },
+  {
+    "id": 6,
+    "descriptionA": "Sappho was a solitary figure who composed her works in isolation.",
+    "descriptionB": "Sappho led a group of young women and composed songs for community events.",
+    "photoA": "https://i0.wp.com/www.themarginalian.org/wp-content/uploads/2020/09/deathofsappho_selva.jpg?resize=680%2C989&ssl=1",
+    "photoB": "https://www.ancient-origins.net/sites/default/files/field/image/Sappho.jpg",
+    "answer": "B",
+    "feedback": "Sappho was not only a poet but also a leader of a thiasos, a group of young women. She composed songs for weddings, religious ceremonies, and other community events, bringing her poetry into the social fabric of her time. Her work was deeply connected to the community and often performed at social gatherings."
+  },
+  {
+    "id": 7,
+    "descriptionA": "Sappho's poems were mostly written in the Ionic dialect, like in Homer's epic poems, which was common in ancient Greece.",
+    "descriptionB": "Sappho’s poetry was written in the Aeolic dialect, which was specific to the island of Lesbos.",
+    "photoA": "https://ancient-greece.org/wp-content/uploads/Ancient-Greece-Map-Bronze-Age-Civilizations-3000-1000-BCE-215-1200x720.jpg",
+    "photoB": "https://cdn.britannica.com/31/247831-050-3D318628/Locator-map-Lesbos.jpg",
+    "answer": "B",
+    "feedback": "Sappho's poetry was written in the Aeolic dialect, which was spoken on the island of Lesbos. This dialect contributed to the distinct sound and rhythm of her poetry, which set it apart from the more widely used Ionic dialect in ancient Greek literature."
   }
 ]
