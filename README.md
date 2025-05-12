@@ -1,7 +1,6 @@
 TO-DOs
 - navbar: add progress indicator
 - implement create page
-    - make database 
     - implement auto generate poem?
 
 Claudia's Checklist
