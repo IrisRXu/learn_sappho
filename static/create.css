@@ -41,7 +41,7 @@
 .button-small {
     flex-grow: 1; /* Allow buttons to grow and take up equal space */
     text-align: center; /* Center text inside the button */
-    background-color: var(--blue);
+    background-color: var(--button-hover-bg);
     border: 1px solid var(--darker-blue);
     color: var(--button-text);
     padding: 0px 20px;
@@ -51,9 +51,13 @@
     transition: background-color 0.3s, border-color 0.3s;
 }
 .button-small:hover {
-    background-color: var(--button-hover-bg);
+    background-color: var(--blue);
     border-color: var(--darker-blue);
 }
+/* .button-selected {
+    background-color: var(--darker-blue);
+    border-color: var(--blue);
+} */
 .canvas-container {
     display: flex;
     flex-direction: column;
@@ -64,18 +68,21 @@
 #canvas {
     border: 1px var(--light-blue); 
     background: var(--lighter-blue);
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    /* box-shadow: #bebebe 10px 10px 10px -5px; */
 }
 .row {
     display: flex;
     height: 100%; /* Make the row take up the full height of its parent */
 }
 .quote {
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 10px 20px;
+    background-color: rgb(208, 222, 226, 0.3);
+    border: 1px solid var(--light-blue);
     margin-bottom: 10px;
     cursor: move;
     user-select: none;
+    text-align: left;
 }
 .draggable {
     list-style-type: none; /* Remove bullet points */

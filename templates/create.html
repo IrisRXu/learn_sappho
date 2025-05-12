@@ -5,14 +5,14 @@
 
 
     <div class="row" id="back-button">
-        <p onclick="window.location.href='/fragments'">Review instructions</p>
+        <p onclick="window.location.href='/fragments'">&lt Review instructions</p>
     </div>
     
     <div class="row">
         <div class="quotes-container col-6">
             <!-- search box -->
             <form onsubmit="event.preventDefault(); submitSearch(document.getElementById('search-query').value);">
-                <input type="search" id="search-query" name="query" placeholder="Search keywords..." aria-label="Search">
+                <input type="search" id="search-query" name="query" placeholder="Search quotes with keywords..." aria-label="Search">
                 <!-- <button type="submit">Search</button> -->
             </form>
 
@@ -29,14 +29,14 @@
             <div id="results">
                 <div class="quote-container" id="quotes-container">
                     {% for quote in results %}
-                        <div class="quote" id="quote{{ loop.index }}" draggable="true">{{ quote.quote }}</div>
+                        <div class="quote" id="quote{{ loop.index }}" draggable="true">{{ quote.quote | replace('\n', '<br>') | safe }}</div>
                     {% endfor %}
                 </div>
             </div>
         </div>
     
         <div class="canvas-container col-6">
-            <h2>Drag and Drop Quotes Here</h2>
+            <div id="instruction">Drop your quotes here to create your poem</div>
             <canvas id="canvas" width="400" height="500"></canvas> 
             <!-- need to change canvas size here and not in css -->
 

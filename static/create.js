@@ -34,7 +34,13 @@ function downloadImage() {
         ctx.font = `${computedStyle.fontSize} ${computedStyle.fontFamily}`;
         ctx.fillStyle = computedStyle.color || 'black';
 
-        ctx.fillText(quoteText, x, y); // Draw the quote text at the stored position
+        const lines = quoteText.split('\n');
+        const lineHeight = parseInt(computedStyle.fontSize, 10) * 1.2; // Default line height if not set
+
+        lines.forEach((line, index) => {
+            console.log(`Drawing line: ${line} at position (${x}, ${y + index * lineHeight})`);
+            ctx.fillText(line, x, y + index * lineHeight);
+        });
     });
 
     // Create a download link for the canvas as an image
@@ -45,7 +51,17 @@ function downloadImage() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+    // const buttons = document.querySelectorAll('.button-small');
+
+    // buttons.forEach((button) => {
+    //     button.addEventListener('click', () => {
+    //         // Remove the 'button-selected' class from all buttons
+    //         buttons.forEach((btn) => btn.classList.remove('button-selected'));
+
+    //         // Add the 'button-selected' class to the clicked button
+    //         button.classList.add('button-selected');
+    //     });
+    // });
 
     // Function to handle drag start
     document.querySelectorAll('.quote').forEach((quote) => {
@@ -92,14 +108,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         quotePositions.forEach(({ quoteId, x, y }) => {
             const quoteElement = document.getElementById(quoteId);
-            const quoteText = quoteElement.textContent;
+            const quoteHtml = quoteElement.innerHTML;
+
+            const quoteText = quoteHtml.replace(/<br\s*\/?>/g, '\n');
 
             // Dynamically retrieve the computed font size and style
             const computedStyle = window.getComputedStyle(quoteElement);
             ctx.font = `${computedStyle.fontSize} ${computedStyle.fontFamily}`;
             ctx.fillStyle = computedStyle.color || 'black';
 
-            ctx.fillText(quoteText, x, y); // Draw the quote text at the stored position
+            const lines = quoteText.split('\n');
+            console.log('draw: quoteHTML: ', quoteHtml);
+            console.log('draw: quoteelement: ', quoteElement);
+            console.log(`draw: quoteText: ${quoteText}`);
+            console.log('draw: lines: ', lines);
+            const lineHeight = parseInt(computedStyle.fontSize, 10) * 1.2; // Default line height if not set
+
+            lines.forEach((line, index) => {
+                console.log(`draw: Drawing line: ${line} at position (${x}, ${y + index * lineHeight})`);
+                ctx.fillText(line, x, y + index * lineHeight);
+            });
         });
     }   
 });
