@@ -10,6 +10,7 @@
     --card-bg-selected: #D0DEE2;
     --card-border: #B7B7B7;
     --card-border-selected: #A7C2C9;
+    --test: #7a7a7a;
 }
 
 body {
@@ -37,6 +38,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    padding-top: 100px; 
 }
 
 .statue-left {
@@ -410,6 +412,13 @@ h2 {
     font-family: var(--main-font);
     font-weight: bold;
     color: #555;
+    position: fixed; /* Ensure navbar stays at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #f8f7f1; /* Add background color to avoid transparency issues */
+    height: 60px; /* Set a fixed height for the navbar */
 }
 .nav-item.disabled {
     color: #888;

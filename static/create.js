@@ -27,6 +27,17 @@ function downloadImage() {
     ctx.fillStyle = getComputedStyle(canvas).backgroundColor || 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    ctx.fontFamily = 'Garamond';
+    ctx.font = 'italic 20px serif'; // Add 'italic' to the font style
+    ctx.fillStyle = '#6A8F92'; // Example text color
+
+    const logText = "Fragments of Sappho";
+    console.log('draw: logTest: ', logText);
+    const now = new Date();
+    const dateTimeText = now.toLocaleString(); // Format the date and time
+    ctx.fillText(dateTimeText, 5, canvas.height - 5); 
+    ctx.fillText(logText, canvas.width-180, canvas.height - 5); // Draw the instruction text
+
     // Draw all quotes at their stored positions
     quotePositions.forEach(({ quoteId, x, y }) => {
         const quoteElement = document.getElementById(quoteId);
@@ -119,6 +130,22 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = getComputedStyle(canvas).backgroundColor || 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        // Set font style and size for the instruction text
+        ctx.fontFamily = 'Garamond';
+        ctx.font = 'italic 20px serif'; // Add 'italic' to the font style
+        ctx.fillStyle = '#6A8F92'; // Example text color
+
+        const instructionText = "Start creating your poem by dropping quotes here...";
+        console.log('draw: instructionText: ', instructionText);
+        ctx.fillText(instructionText, 100, 20); // Draw the instruction text
+
+        const logText = "Fragments of Sappho";
+        console.log('draw: logTest: ', logText);
+        const now = new Date();
+        const dateTimeText = now.toLocaleString(); // Format the date and time
+        ctx.fillText(dateTimeText, 5, canvas.height - 5); 
+        ctx.fillText(logText, canvas.width-180, canvas.height - 5); // Draw the instruction text
+
         quotePositions.forEach(({ quoteId, x, y }) => {
             const quoteElement = document.getElementById(quoteId);
             const quoteHtml = quoteElement.innerHTML;
@@ -143,4 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }   
+
+    // Call drawCanvas to initialize the canvas with the instruction text
+    drawCanvas();
 });

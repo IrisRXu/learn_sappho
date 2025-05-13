@@ -12,6 +12,8 @@
     --button-hover-bg: #D8E1E8;
     --button-text: #4A4A4A;
     --secondary-button-bg: #d3d3d3;
+
+    --text-color: rgb(51, 51, 51, 30);
 }
 #back-button {
     text-decoration: none;
@@ -69,8 +71,9 @@
     width: 100%;
 }
 #canvas {
-    border: 1px var(--light-blue); 
-    background: var(--lighter-blue);
+    border: 1px solid var(--light-blue);
+    background: rgb(223, 233, 235);
+    /* background: #e0e8ea; */
     /* border-radius: 10px; */
     /* box-shadow: #bebebe 10px 10px 10px -5px; */
 }
@@ -79,7 +82,7 @@
     height: 100%; /* Make the row take up the full height of its parent */
 }
 .quote-container {
-    max-height: 450px;
+    height: 593px;
     overflow: auto;
 }
 .quote {
@@ -99,5 +102,5 @@
     padding: 0; /* Remove default padding */
 }
 #download {
-    margin: 10px 0px;
+    margin: 20px 0px;
 }
