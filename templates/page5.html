@@ -2,54 +2,47 @@
 
 {% block content %}
 <style>
-    /* Specific wider container for page 5 */
     .learning-container-page5 {
-        max-width: 1800px;  /* Significantly increased width */
-        width: 95%;        /* Takes up almost full screen width */
-        margin: 0 auto;    /* Center the container */
+        max-width: 1800px;
+        width: 95%;
+        margin: 0 auto;
         padding: 2rem;
     }
 
-    /* Adjust the poetry content layout for wider container */
     .learning-container-page5 .poetry-content {
         display: grid;
-        grid-template-columns: 55% 45%; /* Slightly adjusted ratio for better use of space */
-        gap: 3rem;        /* Increased gap for better separation */
-        margin-top: 1rem; /* Add space after instruction text */
+        grid-template-columns: 55% 45%;
+        gap: 3rem;
+        margin-top: 1rem;
     }
 
-    /* Ensure poem text remains readable in wider container */
     .learning-container-page5 .poem {
-        max-width: 800px;  /* Prevent lines from becoming too long */
-        margin: 0 auto;    /* Center the poem in its container */
+        max-width: 800px;
+        margin: 0 auto;
     }
 
-    /* Adjust poem lines for tighter spacing */
     .learning-container-page5 .poem-line {
-        font-size: 1.2rem;  /* Slightly larger text */
-        line-height: 1.6;   /* Tighter line spacing */
-        padding: 0.15rem 0; /* Small padding for clickable area */
-        cursor: pointer;    /* Show clickable cursor */
+        font-size: 1.2rem;
+        line-height: 1.6;
+        padding: 0.15rem 0;
+        cursor: pointer;
     }
 
-    /* Change highlight color for active lines */
     .learning-container-page5 .poem-line.active {
         background-color: rgba(135, 206, 250, 0.2);
         border-radius: 4px;
-        padding: 0.15rem 0.5rem; /* Match the tighter spacing */
+        padding: 0.15rem 0.5rem;
         margin: -0.15rem -0.5rem;
     }
 
-    /* Style for instruction text */
     .instruction-text {
         text-align: center;
         color: #888;
         font-style: italic;
-        margin: 0.5rem 0 1rem 0; /* Reduced margins */
+        margin: 0.5rem 0 1rem 0;
         font-size: 1.1rem;
     }
 
-    /* Adjust analysis panel for tighter layout */
     .learning-container-page5 .analysis-panel {
         padding: 1.5rem;
         background: rgba(255, 255, 255, 0.05);
@@ -58,39 +51,36 @@
         margin-top: 0.5rem;
     }
 
-    /* Adjust navigation buttons for tighter layout */
     .learning-container-page5 .navigation-buttons {
         max-width: 800px;
-        margin: 2rem auto; /* Reduced margin */
+        margin: 2rem auto;
         display: flex;
         justify-content: space-between;
         gap: 2rem;
     }
 
-    /* Style for all analysis content */
     .learning-container-page5 .analysis-content {
-        display: none;  /* Hide by default */
-        margin-top: 1rem;  /* Consistent spacing from header */
+        display: none;
+        margin-top: 1rem;
     }
 
     .learning-container-page5 .analysis-content.active {
-        display: block;  /* Show when active */
+        display: block;
     }
 
-    /* Default instruction state */
     .learning-container-page5 .analysis-content.default-instruction {
-        display: none;  /* Hide by default */
+        display: none;
         align-items: center;
         justify-content: center;
-        min-height: 100px;  /* Reduced min-height */
+        min-height: 100px;
         font-style: italic;
-        color: #888;
+        color: #4A90E2;
         font-size: 1.2rem;
         text-align: center;
     }
 
     .learning-container-page5 .analysis-content.default-instruction.active {
-        display: flex;  /* Show as flex when active */
+        display: flex;
     }
 
     .poem-intro {
@@ -114,7 +104,6 @@
         <div class="poetry-content">
             <div class="poem-container">
                 <div class="poem">
-                    
                     <div class="poem-body">
                         <div id="line1" class="poem-line italic">
                             He seems to me equal to gods that man
@@ -277,15 +266,12 @@
         
         poemLines.forEach((line, index) => {
             line.addEventListener('click', function() {
-                // Remove active class from all lines and analysis
                 poemLines.forEach(l => l.classList.remove('active'));
                 analysisContents.forEach(a => a.classList.remove('active'));
                 
-                // Add active class to clicked line
                 this.classList.add('active');
                 
-                // Show analysis for the specific line
-                if (analysisContents[index + 1]) { // +1 to skip default instruction
+                if (analysisContents[index + 1]) {
                     analysisContents[index + 1].classList.add('active');
                     defaultInstruction.classList.remove('active');
                 }

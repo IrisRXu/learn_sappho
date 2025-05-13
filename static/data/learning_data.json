@@ -1,46 +1,47 @@
 {
     "pages": [
-        {
-            "id": "1",
-            "title": "Sappho's World",
-            "content": "Step into the ancient world of Lesbos, where Sappho's poetry flourished. Born around 630 BCE on the island of Lesbos, Sappho lived during a time when Greek culture was reaching new heights. Her poetry, written in the Aeolic dialect, captured the essence of love, desire, and the human experience.",
-            "next_page": "2"
-        },
-        {
-            "id": "2",
-            "title": "Sappho’s Musical Ritual",
-            "content": "As leader of a thiasos—a circle of young women—Sappho composed verses for lyre accompaniment that epitomize Greek lyric poetry by blending personal emotion with musical expression. Likely performed at ceremonies honoring the Muses and in Dionysian rites, her songs forged an intimate bond between singer and audience.",
-            "next_page": "3"
-        },
-        {
-            "id": "3",
-            "title": "Her Legacy",
-            "content": "Sappho’s poetry left a profound mark on Roman writers such as Catullus and Horace and shaped subsequent European lyric movements. Rediscovered in the Renaissance, her work inspired figures like Petrarch and Shakespeare. Her evocative themes and intimate emotionality even reached the visual arts, influencing 19th-century painter Hector Leroux",
-            "next_page": "4"
-        },
-        {
-            "id": "4",
-            "title": "Themes in Sappho's Poetry",
-            "content": "Unlike Homer’s grand narratives of gods and warfare, Sappho’s verses are tender and intimate. She delved into individual feelings—love, yearning, and personal moments—bringing an entirely fresh, subjective tone.",
-            "next_page": "5"
-        },
-        {
-            "id": "5",
-            "title": "Poem 31",
-            "content": "Experience one of Sappho's most famous and complete poems, exploring themes of love, desire, and physical manifestations of emotion.",
-            "next_page": "6"
-        },
-        {
-            "id": "6",
-            "title": "The Power of Fragments",
-            "content": "Though much of her work has been lost, the fragments that remain offer glimpses into her genius. These pieces, preserved through quotes in other works and discoveries of ancient papyri, continue to inspire and move readers today.",
-            "next_page": "7"
-        },
-        {
-            "id": "7",
-            "title": "Modern Interpretations",
-            "content": "In modern scholarship, Sappho is celebrated not only for her lyrical mastery but also for her candid expression of love and desire between women. Her fragments have been reclaimed as early testimonials to same-sex affection, inspiring LGBTQ+ writers and artists. ",
-            "next_page": "quiz-intro"
-        }
+      {
+        "id": "1",
+        "title": "Sappho's World",
+        "content": "Imagine the sunlit island of Lesbos around 630 BCE, where Sappho began composing her poems in the local Aeolic dialect.Recognized as one of antiquity’s greatest lyric poets, she crafted verses of love, desire, and everyday life that bring early Greek culture vividly to life.",
+        "next_page": "2"
+      },
+      {
+        "id": "2",
+        "title": "Sappho’s Musical Ritual",
+        "content": "As leader of a thiasos—a close-knit circle of young women—Sappho wrote lyrics meant to be sung with a lyre. These poems blend personal emotion with music and were likely performed at festivals for the Muses and during Dionysian celebrations, drawing listeners into an intimate shared experience.",
+        "next_page": "3"
+      },
+      {
+        "id": "3",
+        "title": "Her Legacy",
+        "content": "Sappho’s poetry profoundly influenced Roman writers like Catullus and Horace and helped shape European lyric traditions. Rediscovered in the Renaissance, her work inspired poets such as Petrarch and Shakespeare, and even found echoes in 19th-century painter Hector Leroux’s art.",
+        "next_page": "4"
+      },
+      {
+        "id": "4",
+        "title": "Themes in Sappho's Poetry",
+        "content": "While Homer’s epics celebrate gods and heroism, Sappho’s verses focus on intimate feelings—love, longing, and small personal moments—offering a fresh, introspective voice in ancient Greek literature.",
+        "next_page": "5"
+      },
+      {
+        "id": "5",
+        "title": "Poem 31",
+        "content": "Discover one of Sappho’s best-preserved works, often called Poem 31, where she vividly describes love, desire, and the physical rush that accompanies deep emotion.",
+        "next_page": "6"
+      },
+      {
+        "id": "6",
+        "title": "The Power of Fragments",
+        "content": "Although only fragments of her poems survive—preserved by later authors and found on ancient papyri—these brief lines reveal Sappho’s genius and continue to move readers with their emotional clarity.",
+        "next_page": "7"
+      },
+      {
+        "id": "7",
+        "title": "Modern Interpretations",
+        "content": "Today, scholars honor Sappho not only for her poetic craft but for her open expression of love between women. Her surviving fragments stand as some of the earliest records of same-sex affection, inspiring generations of LGBTQ+ writers and artists.",
+        "next_page": "quiz-intro"
+      }
     ]
-} 
+  }
+  
