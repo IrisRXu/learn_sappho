@@ -7,7 +7,10 @@ let quizLength = 7;
 function startQuiz() {
   fetch('/quiz-score', { 
     method: 'POST', 
-    body: JSON.stringify({ currentQuestion: 1, score: 0 }), 
+    body: JSON.stringify({ 
+      currentQuestion: 1,
+      questionResults: {},
+    }), 
     headers: { 'Content-Type': 'application/json' } 
   }).then(() => {
     window.location.href = '/quiz/0';
@@ -30,22 +33,26 @@ function submitAnswer() {
   }
 
   const correctAnswer = questionData.answer;
-  const questionID  = questionData.id;
-  // console.log("Selected answer:", selectedAnswer);
-  // console.log("current question id:", questionID);
+  const questionID = questionData.id;
   const isCorrect = selectedAnswer === correctAnswer;
-  
+
   fetch('/quiz-score', {
     method: 'GET'
   })
   .then(response => response.json())
   .then(currentScore => {
-    console.log("Current score being sent:", currentScore);
-    const newScore = currentScore.score || 0;
-    const updatedScore = isCorrect ? newScore + 1 : newScore;
+    // console.log("Current score being sent:", currentScore);
+    // const newScore = currentScore.score || 0;
+    // const updatedScore = isCorrect ? newScore + 1 : newScore;
+
+    // Track correctness for each question
+    const questionResults = currentScore.questionResults || {};
+    questionResults[questionID] = isCorrect;
+
     const updatedProgress = {
-      currentQuestion: questionID + 1,
-      score: updatedScore,
+      currentQuestion: questionID,
+      // score: updatedScore,
+      questionResults: questionResults
     };
 
     console.log("Updated progress being sent:", updatedProgress);
@@ -91,8 +98,6 @@ function submitAnswer() {
       confirmButton.style.display = 'none';
     }
 
-    // console.log("3 current question id:", questionID);
-
     // Add a "Next" button below the feedback
     const quiz = document.getElementById('quiz-buttons');
     quiz.innerHTML += `
@@ -105,17 +110,21 @@ function nextQuestion() {
   console.log("current question id:", questionData.id);
   console.log("total length:", quizLength);
 
-  // const feedback = document.getElementById('feedback-container');
-  // feedback.style.display = 'none';
-
-  // // Ensure the cards maintain their layout by resetting their display property
-  // document.querySelectorAll('.card').forEach(card => {
-  //   card.style.display = 'block';
-  // });
   if (questionData.id < quizLength) {
     window.location.href=`/quiz/${questionData.id}`;
   } else {
     window.location.href=`/quiz-finish`;
+  }
+}
+
+function prevQuestion() {
+  console.log("current question id:", questionData.id);
+  console.log("total length:", quizLength);
+
+  if (questionData.id > 1) {
+    window.location.href=`/quiz/${questionData.id - 2}`;
+  } else {
+    window.location.href=`/quiz-intro`;
   }
 }
 

@@ -88,3 +88,9 @@
     height: auto;
     object-fit: cover;
 }
+#back {
+    border: 1px solid var(--card-border);
+}
+#back:hover {
+    transform: translateY(-2px);
+}

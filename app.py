@@ -16,26 +16,6 @@ app.secret_key = os.urandom(24)
 # Add context processor to provide current_page to all templates
 @app.context_processor
 def utility_processor():
-    # def get_current_page():
-    #     if os.path.exists('learning_progress.json'):
-    #         try:
-    #             with open('learning_progress.json', 'r') as f:
-    #                 progress = json.load(f)
-    #                 return int(progress.get('currentPage', 1))
-    #         except:
-    #             return 1
-    #     return 1
-
-    # # Get quiz progress
-    # quiz_progress = session.get('quiz_progress', {})
-    # # Count questions that have been answered (have a selected_answer)
-    # completed_questions = len([q for q in quiz_progress.values() if isinstance(q, dict) and 'selected_answer' in q])
-    
-    # return {
-    #     'current_page': get_current_page(),
-    #     'quiz_progress': completed_questions,
-    #     'total_quiz_questions': len(quiz_data)
-    # }
     def is_learning_completed():
         return session.get('learning_completed', False)
     return {'learning_completed': is_learning_completed()}
@@ -91,37 +71,6 @@ def home():
     
     # Pass both values to the template
     return render_template('home.html', learning_completed=learning_completed, quiz_completed=quiz_completed, body_class="home-page")
-
-    # print("Starting home route with learning_completed = False")
-    
-    # # Explicitly set to False
-    # learning_completed = False
-    # print(f"Initial learning_completed: {learning_completed}")
-    
-    # # Only try to read file if it exists
-    # if os.path.exists('learning_progress.json'):
-    #     try:
-    #         print("Found learning_progress.json file")
-    #         with open('learning_progress.json', 'r') as f:
-    #             progress = json.load(f)
-    #             print(f"Progress data from file: {progress}")
-                
-    #             # Only check currentPage value
-    #             current_page = int(progress.get('currentPage', 1))
-    #             print(f"Current page from file: {current_page}")
-                
-    #             # Update to check for page 7 completion
-    #             learning_completed = (current_page >= 7)
-    #             print(f"Learning completed based on current_page: {learning_completed}")
-    #     except Exception as e:
-    #         learning_completed = False
-    #         print(f"Error reading progress file: {str(e)}")
-    # else:
-    #     learning_completed = False
-    #     print("No progress file found, learning_completed stays False")
-    
-    # print(f"=== Final learning_completed value: {learning_completed} ===")
-    # return render_template('home.html', learning_completed=learning_completed)
 
 @app.route('/page<int:page_id>')
 def learning_page(page_id):
@@ -185,11 +134,18 @@ def quiz(id=None):
 @app.route('/quiz-finish')
 def quiz_finish():
     progress = session.get('quiz_score', {})
-    total_questions = len(quiz_data)
-    print(f"Total questions: {total_questions}")
     if not progress:
         return "No quiz progress found", 404
-    return render_template('quiz-finish.html', progress=progress, totalQuestions=total_questions)
+
+    # Calculate the score
+    question_results = progress.get('questionResults', {})
+    score = sum(1 for correct in question_results.values() if correct)  # Count True values
+    total_questions = len(quiz_data)
+
+    print(f"Progress: {progress}")  # Debugging
+    print(f"Score: {score}, Total Questions: {total_questions}")  # Debugging
+
+    return render_template('quiz-finish.html', progress=progress, score=score, totalQuestions=total_questions)
 
 @app.route('/fragments')
 def fragments():
@@ -208,26 +164,6 @@ def create():
         results = quotes_data  # Default to top 3 quotes if no query is provided
 
     return render_template('create.html', results=results)
-
-# @app.route('/learning-progress', methods=['GET'])
-# def get_learning_progress():
-#     print("\n=== GET LEARNING PROGRESS ===")
-#     try:
-#         if os.path.exists('learning_progress.json'):
-#             with open('learning_progress.json', 'r') as f:
-#                 progress = json.load(f)
-#                 current_page = int(progress.get('currentPage', 1))
-#                 print(f"Current progress from file: {progress}")
-#                 return jsonify({
-#                     "currentPage": current_page,
-#                     "completed": (current_page >= 7)
-#                 })
-#         else:
-#             print("No learning_progress.json file found")
-#             return jsonify({"currentPage": 1, "completed": False})
-#     except Exception as e:
-#         print(f"Error reading progress: {str(e)}")
-#         return jsonify({"error": str(e)}), 500
 
 @app.route('/learning-progress', methods=['GET'])
 def get_learning_progress():
